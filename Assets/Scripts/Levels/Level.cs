@@ -18,7 +18,7 @@ namespace LD58.Levels
         private int _shotCount = 0;
         private LevelTax _currentTax;
 
-        public event UnityAction OnShot = null;
+        public event UnityAction OnShotCountIncreased = null;
         public event UnityAction OnLose = null;
 
         public int RemainingShotCount => _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying - _shotCount;
@@ -62,6 +62,20 @@ namespace LD58.Levels
         {
             _cartControls.Cannon.CanShoot = false;
             await WaitForMovingFruitsAsync(cancellation_token);
+            _shotCount++;
+
+            if (HasLost())
+            {
+                Lose();
+
+                return;
+            }
+            else
+            {
+                UpdateCurrentTax();
+                OnShotCountIncreased?.Invoke();
+            }
+
             _fruitGrower.GrowFruits();
             _cartControls.Cannon.CanShoot = true;
         }
@@ -98,18 +112,7 @@ namespace LD58.Levels
 
         private void CartCannon_OnShot()
         {
-            _shotCount++;
-
-            if (HasLost())
-            {
-                Lose();
-            }
-            else
-            {
-                UpdateCurrentTax();
-                OnShot?.Invoke();
-                PrepareNextShotAsync(destroyCancellationToken).Forget();
-            }
+            PrepareNextShotAsync(destroyCancellationToken).Forget();
         }
 
         private bool HasLost()

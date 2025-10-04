@@ -15,7 +15,7 @@ namespace LD58.UI
             _taxPanelUI.SetButtonEnabled(Level.Instance.CanPayTaxes());
         }
 
-        private void Level_OnShot()
+        private void Level_OnShotCountIncreased()
         {
             RefreshUI();
         }
@@ -27,7 +27,7 @@ namespace LD58.UI
 
         private void Start()
         {
-            Level.Instance.OnShot += Level_OnShot;
+            Level.Instance.OnShotCountIncreased += Level_OnShotCountIncreased;
             Level.Instance.OnLose += Level_OnLose;
 
             RefreshUI();
@@ -37,7 +37,7 @@ namespace LD58.UI
         {
             if (Level.HasInstance)
             {
-                Level.Instance.OnShot -= Level_OnShot;
+                Level.Instance.OnShotCountIncreased -= Level_OnShotCountIncreased;
                 Level.Instance.OnLose -= Level_OnLose;
             }
         }
