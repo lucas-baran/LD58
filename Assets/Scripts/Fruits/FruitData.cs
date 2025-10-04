@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,13 @@ namespace LD58.Fruits
     public class FruitData : ScriptableObject
     {
         [SerializeField] private string _name = string.Empty;
-        [SerializeField] private List<GrowStep> _growSteps;
+        [SerializeField] private List<GrowStep> _growSteps = new();
 
         public string Name => _name;
         public int MaxGrow => _growSteps.Count - 1;
         public IReadOnlyList<GrowStep> GrowSteps => _growSteps;
 
+        [Serializable]
         public sealed class GrowStep
         {
             [SerializeField] private int _value = 1;
