@@ -10,7 +10,7 @@ namespace LD58.Fruits
 
         public FruitData Data => _data;
 
-        public void Hit()
+        private void OnHit()
         {
             _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         }
@@ -18,6 +18,13 @@ namespace LD58.Fruits
         public void Destroy()
         {
             Destroy(gameObject);
+        }
+
+        private void OnCollisionEnter2D(
+            Collision2D collision
+            )
+        {
+            OnHit();
         }
 
         private void Awake()
