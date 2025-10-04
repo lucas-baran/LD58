@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using LD58.Cart;
 using LD58.Fruits;
+using LD58.Players;
+using LD58.Taxes;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,11 +16,47 @@ namespace LD58.Levels
         private CartControls _cartControls;
         private FruitGrower _fruitGrower;
         private int _shotCount = 0;
+        private LevelTax _currentTax;
 
         public event UnityAction OnShot = null;
         public event UnityAction OnLose = null;
 
-        public int ShotCount => _shotCount;
+        public int RemainingShotCount => _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying - _shotCount;
+        public LevelTax CurrentTax => _currentTax;
+
+        public void PayTaxes()
+        {
+            if (_currentTax == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _currentTax.FruitCost.FruitCosts.Count; i++)
+            {
+                SingleFruitCost fruit_cost = _currentTax.FruitCost.FruitCosts[i];
+                Player.Instance.Inventory.UnloadFruit(fruit_cost.FruitData, fruit_cost.Quantity);
+            }
+        }
+
+        public bool CanPayTaxes()
+        {
+            if (_currentTax == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < _currentTax.FruitCost.FruitCosts.Count; i++)
+            {
+                SingleFruitCost fruit_cost = _currentTax.FruitCost.FruitCosts[i];
+
+                if (Player.Instance.Inventory.GetFruitCount(fruit_cost.FruitData) < fruit_cost.Quantity)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         private async UniTaskVoid PrepareNextShotAsync(CancellationToken cancellation_token)
         {
@@ -38,6 +76,26 @@ namespace LD58.Levels
             OnLose?.Invoke();
         }
 
+        private void UpdateCurrentTax()
+        {
+            if (_currentTax != null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _data.Taxes.Count; i++)
+            {
+                LevelTax level_tax = _data.Taxes[i];
+
+                if (_shotCount >= level_tax.StartsAtShot)
+                {
+                    _currentTax = level_tax;
+
+                    return;
+                }
+            }
+        }
+
         private void CartCannon_OnShot()
         {
             _shotCount++;
@@ -48,6 +106,7 @@ namespace LD58.Levels
             }
             else
             {
+                UpdateCurrentTax();
                 OnShot?.Invoke();
                 PrepareNextShotAsync(destroyCancellationToken).Forget();
             }
@@ -55,12 +114,14 @@ namespace LD58.Levels
 
         private bool HasLost()
         {
-            return false;
+            return !Player.Instance.Inventory.HasFruits()
+                || (_currentTax != null && _shotCount > _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying);
         }
 
-        private void Cannon_OnHasNoFruitToShoot()
+        protected override void Awake()
         {
-            Lose();
+            base.Awake();
+            UpdateCurrentTax();
         }
 
         private void Start()
@@ -70,13 +131,11 @@ namespace LD58.Levels
 
             _cartControls.Cannon.CanShoot = true;
             _cartControls.Cannon.OnShot += CartCannon_OnShot;
-            _cartControls.Cannon.OnHasNoFruitToShoot += Cannon_OnHasNoFruitToShoot;
         }
 
         private void OnDestroy()
         {
             _cartControls.Cannon.OnShot -= CartCannon_OnShot;
-            _cartControls.Cannon.OnHasNoFruitToShoot -= Cannon_OnHasNoFruitToShoot;
         }
     }
 }

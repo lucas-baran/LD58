@@ -1,4 +1,5 @@
 using LD58.Fruits;
+using LD58.Players;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,8 +13,13 @@ namespace LD58.UI
 
         public void SetCost(SingleFruitCost fruit_cost)
         {
-            _countText.text = fruit_cost.Quantity.ToString();
+            _countText.text = FormatFruitQuantity(fruit_cost);
             _icon.sprite = fruit_cost.FruitData.Sprite;
+        }
+
+        private string FormatFruitQuantity(SingleFruitCost fruit_cost)
+        {
+            return $"{Player.Instance.Inventory.GetFruitCount(fruit_cost.FruitData)}/{fruit_cost.Quantity}";
         }
     }
 }

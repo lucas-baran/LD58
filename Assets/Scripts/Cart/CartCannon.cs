@@ -28,7 +28,6 @@ namespace LD58.Cart
             }
         }
 
-        public event UnityAction OnHasNoFruitToShoot = null;
         public event UnityAction OnShot = null;
 
         public void Shoot()
@@ -65,18 +64,14 @@ namespace LD58.Cart
                 return;
             }
 
-            if (!Player.Instance.Inventory.HasFruits())
+            if (Player.Instance.Inventory.HasFruits())
             {
-                OnHasNoFruitToShoot?.Invoke();
-
-                return;
+                FruitData fruit_data = Player.Instance.Inventory.GetBestFruit(_fruitShootValueComparer);
+                _fruitToShoot = FruitGrower.Instance.GetFruit(fruit_data);
+                _fruitToShoot.transform.localScale = Vector3.one;
+                _fruitToShoot.transform.SetParent(_fruitParent, worldPositionStays: true);
+                _fruitToShoot.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             }
-
-            FruitData fruit_data = Player.Instance.Inventory.GetBestFruit(_fruitShootValueComparer);
-            _fruitToShoot = FruitGrower.Instance.GetFruit(fruit_data);
-            _fruitToShoot.transform.localScale = Vector3.one;
-            _fruitToShoot.transform.SetParent(_fruitParent, worldPositionStays: true);
-            _fruitToShoot.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
         private void HideFruitToShoot()
