@@ -15,6 +15,20 @@ namespace LD58.Cart
 
         public CartCannon Cannon => _cannon;
 
+        public void SetEnabled(bool enabled)
+        {
+            _cannon.CanShoot = enabled;
+
+            if (enabled)
+            {
+                _playerActions.Enable();
+            }
+            else
+            {
+                _playerActions.Disable();
+            }
+        }
+
         private void UpdatePosition()
         {
             float movement = _playerActions.Move.ReadValue<float>();

@@ -108,6 +108,7 @@ namespace LD58.Levels
 
         private void Lose()
         {
+            _cartControls.SetEnabled(false);
             OnLose?.Invoke();
         }
 
@@ -124,6 +125,7 @@ namespace LD58.Levels
 
         private void Win()
         {
+            _cartControls.SetEnabled(false);
             OnWin?.Invoke();
         }
 
