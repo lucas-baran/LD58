@@ -5,6 +5,7 @@ namespace LD58.Fruits
     public class Fruit : MonoBehaviour
     {
         [SerializeField] private FruitData _data = null;
+        [SerializeField] private SpriteRenderer _renderer = null;
         [SerializeField] private Rigidbody2D _rigidbody = null;
 
         public FruitData Data => _data;
@@ -17,6 +18,11 @@ namespace LD58.Fruits
         public void Destroy()
         {
             Destroy(gameObject);
+        }
+
+        private void Awake()
+        {
+            _renderer.sprite = _data.Sprite;
         }
     }
 }
