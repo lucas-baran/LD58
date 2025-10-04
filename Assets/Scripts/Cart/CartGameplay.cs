@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using LD58.Fruits;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LD58.Cart
 {
@@ -10,6 +11,8 @@ namespace LD58.Cart
         [SerializeField] private CartControls _cartControls;
 
         private FruitGrower _fruitGrower;
+
+        public event UnityAction OnLose = null;
 
         private async UniTaskVoid PrepareNextShotAsync(CancellationToken cancellation_token)
         {
@@ -24,9 +27,19 @@ namespace LD58.Cart
             await UniTask.WaitWhile(_fruitGrower, fruit_grower => fruit_grower.IsAnyFruitMoving(), cancellationToken: cancellation_token);
         }
 
+        private void Lose()
+        {
+            OnLose?.Invoke();
+        }
+
         private void CartCannon_OnShot()
         {
             PrepareNextShotAsync(destroyCancellationToken).Forget();
+        }
+
+        private void Cannon_OnHasNoFruitToShoot()
+        {
+            Lose();
         }
 
         private void Start()
@@ -35,11 +48,13 @@ namespace LD58.Cart
 
             _cartControls.Cannon.CanShoot = true;
             _cartControls.Cannon.OnShot += CartCannon_OnShot;
+            _cartControls.Cannon.OnHasNoFruitToShoot += Cannon_OnHasNoFruitToShoot;
         }
 
         private void OnDestroy()
         {
             _cartControls.Cannon.OnShot -= CartCannon_OnShot;
+            _cartControls.Cannon.OnHasNoFruitToShoot -= Cannon_OnHasNoFruitToShoot;
         }
     }
 }
