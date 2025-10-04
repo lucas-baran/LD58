@@ -20,6 +20,7 @@ namespace LD58.Levels
         public event UnityAction OnShotCountIncreased = null;
         public event UnityAction OnTaxPayed = null;
         public event UnityAction OnLose = null;
+        public event UnityAction OnWin = null;
 
         public int RemainingShotCount => _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying - _shotCount;
         public LevelTax CurrentTax => _currentTax;
@@ -67,7 +68,13 @@ namespace LD58.Levels
             await WaitForMovingFruitsAsync(cancellation_token);
             _shotCount++;
 
-            if (HasLost())
+            if (HasWon())
+            {
+                Win();
+
+                return;
+            }
+            else if (HasLost())
             {
                 Lose();
 
@@ -99,31 +106,6 @@ namespace LD58.Levels
             OnLose?.Invoke();
         }
 
-        private void UpdateCurrentTax()
-        {
-            if (_currentTax != null)
-            {
-                return;
-            }
-
-            for (int i = 0; i < _data.Taxes.Count; i++)
-            {
-                LevelTax level_tax = _data.Taxes[i];
-
-                if (level_tax.StartsAtShot >= _shotCount)
-                {
-                    _currentTax = level_tax;
-
-                    return;
-                }
-            }
-        }
-
-        private void CartCannon_OnShot()
-        {
-            PrepareNextShotAsync(destroyCancellationToken).Forget();
-        }
-
         private bool HasLost()
         {
             return !Player.Instance.Inventory.HasFruits()
@@ -133,6 +115,49 @@ namespace LD58.Levels
         private bool TaxIsDue()
         {
             return _currentTax != null && RemainingShotCount <= 0;
+        }
+
+        private void Win()
+        {
+            OnWin?.Invoke();
+        }
+
+        private bool HasWon()
+        {
+            return _currentTax == null
+                && !TryGetValidTax(out _);
+        }
+
+        private void UpdateCurrentTax()
+        {
+            if (_currentTax == null)
+            {
+                TryGetValidTax(out _currentTax);
+            }
+        }
+
+        private bool TryGetValidTax(out LevelTax tax)
+        {
+            tax = null;
+
+            for (int i = 0; i < _data.Taxes.Count; i++)
+            {
+                LevelTax level_tax = _data.Taxes[i];
+
+                if (level_tax.StartsAtShot >= _shotCount)
+                {
+                    tax = level_tax;
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void CartCannon_OnShot()
+        {
+            PrepareNextShotAsync(destroyCancellationToken).Forget();
         }
 
         protected override void Awake()
