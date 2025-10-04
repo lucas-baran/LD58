@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4278a3e5027b44ea3300af9f16e488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Fruits.FruitGrower
+  _startingFruits:
+  - {fileID: 11400000, guid: 37dc978027aeba343892dd54c2b80afd, type: 2}
   _cameraPadding: 1
   _fruitPrefab: {fileID: 9106314033568303206, guid: 59bd74bb4ea94c34397441d0e06f6527, type: 3}

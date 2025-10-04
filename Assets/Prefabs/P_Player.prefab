@@ -58,3 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493151f4c4957c04f979e18ba4ff1dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Players.PlayerInventory
+  _startingFruits:
+  - _fruitData: {fileID: 11400000, guid: 37dc978027aeba343892dd54c2b80afd, type: 2}
+    _count: 10
