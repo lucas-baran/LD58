@@ -8,6 +8,7 @@ namespace LD58.Fruits
     {
         [SerializeField] private string _name = string.Empty;
         [SerializeField] private int _value = 1;
+        [SerializeField] private int _shootValue = 1;
         [SerializeField] private int _health = 1;
         [SerializeField] private int _damage = 1;
         [SerializeField] private Sprite _sprite;
@@ -17,6 +18,7 @@ namespace LD58.Fruits
         public string Name => _name;
         public bool CanGrow => _fruitGrowths != null && _fruitGrowths.Count > 0;
         public int Value => _value;
+        public int ShootValue => _shootValue;
         public int Health => _health;
         public int Damage => _damage;
         public Sprite Sprite => _sprite;

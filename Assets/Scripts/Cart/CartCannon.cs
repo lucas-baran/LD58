@@ -1,5 +1,6 @@
 using LD58.Fruits;
 using LD58.Players;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,7 @@ namespace LD58.Cart
 
         private Fruit _fruitToShoot;
         private bool _canShoot;
+        private readonly IComparer<FruitData> _fruitShootValueComparer = new FruitShootValueComparer();
 
         public bool CanShoot
         {
@@ -36,7 +38,8 @@ namespace LD58.Cart
                 Vector3 shoot_velocity = _data.ShootForce * -_fruitParent.up;
                 _fruitToShoot.Impulse(shoot_velocity);
                 _fruitToShoot.EnableCollisions();
-                _fruitToShoot.transform.parent = null;
+                _fruitToShoot.transform.SetParent(null, worldPositionStays: true);
+                _fruitToShoot = null;
 
                 OnShot?.Invoke();
             }
@@ -61,27 +64,17 @@ namespace LD58.Cart
                 return;
             }
 
-            if (!HasFruitInInventory())
+            if (!Player.Instance.Inventory.HasFruits())
             {
                 OnHasNoFruitToShoot?.Invoke();
 
                 return;
             }
 
-            FruitData fruit_data = GetFruitFromInventory();
+            FruitData fruit_data = Player.Instance.Inventory.GetBestFruit(_fruitShootValueComparer);
             _fruitToShoot = FruitGrower.Instance.GetFruit(fruit_data);
-            _fruitToShoot.transform.parent = _fruitParent;
+            _fruitToShoot.transform.SetParent(_fruitParent, worldPositionStays: true);
             _fruitToShoot.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        }
-
-        private bool HasFruitInInventory()
-        {
-            return Player.Instance.Inventory.HasFruits();
-        }
-
-        private FruitData GetFruitFromInventory()
-        {
-            throw new System.NotImplementedException();
         }
 
         private void HideFruitToShoot()
