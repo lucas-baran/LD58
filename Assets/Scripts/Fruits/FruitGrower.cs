@@ -15,6 +15,19 @@ namespace LD58.Fruits
             }
         }
 
+        public bool IsAnyFruitMoving()
+        {
+            foreach (Fruit fruit in _fruits)
+            {
+                if (fruit.IsMoving)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void Start()
         {
             _fruits.AddRange(FindObjectsByType<Fruit>(FindObjectsSortMode.None));
