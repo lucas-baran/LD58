@@ -6,7 +6,7 @@ namespace LD58.Players
 {
     public class PlayerInventory : MonoBehaviour
     {
-        private readonly List<FruitData> _collectedFruits = new();
+        private readonly List<CollectedFruit> _collectedFruits = new();
 
         public void CollectFruit(
             Fruit fruit
@@ -14,7 +14,7 @@ namespace LD58.Players
         {
             if (fruit != null)
             {
-                _collectedFruits.Add(fruit.Data);
+                _collectedFruits.Add(fruit.GetCollectedFruit());
             }
         }
     }
