@@ -38,7 +38,8 @@ namespace LD58.Cart
                 Vector3 shoot_velocity = _data.ShootForce * -_fruitParent.up;
                 _fruitToShoot.Impulse(shoot_velocity);
                 _fruitToShoot.EnableCollisions();
-                _fruitToShoot.transform.SetParent(null, worldPositionStays: true);
+                _fruitToShoot.transform.parent = null;
+                _fruitToShoot.transform.localScale = Vector3.one;
                 _fruitToShoot = null;
 
                 OnShot?.Invoke();
@@ -73,6 +74,7 @@ namespace LD58.Cart
 
             FruitData fruit_data = Player.Instance.Inventory.GetBestFruit(_fruitShootValueComparer);
             _fruitToShoot = FruitGrower.Instance.GetFruit(fruit_data);
+            _fruitToShoot.transform.localScale = Vector3.one;
             _fruitToShoot.transform.SetParent(_fruitParent, worldPositionStays: true);
             _fruitToShoot.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
