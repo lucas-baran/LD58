@@ -72,6 +72,7 @@ namespace LD58.Cart
             _playerActions = InputManager.Instance.Player;
             _camera = Camera.main;
 
+            _playerActions.Enable();
             _playerActions.Shoot.performed += Shoot_performed;
         }
 
