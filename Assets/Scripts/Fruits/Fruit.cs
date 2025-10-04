@@ -21,18 +21,15 @@ namespace LD58.Fruits
             get => _data;
             private set
             {
-                if (value != _data)
-                {
-                    _data = value;
+                _data = value;
 
-                    if (_data != null)
-                    {
-                        _health = _data.Health;
-                        _sizeTransform.localScale = new Vector3(_data.Size, _data.Size, _data.Size);
-                        _renderer.sprite = _data.Sprite;
-                        _renderer.color = _data.Color;
-                        _collider.enabled = _data.HasCollisions;
-                    }
+                if (_data != null)
+                {
+                    _health = _data.Health;
+                    _sizeTransform.localScale = new Vector3(_data.Size, _data.Size, _data.Size);
+                    _renderer.sprite = _data.Sprite;
+                    _renderer.color = _data.Color;
+                    _collider.enabled = _data.HasCollisions;
                 }
             }
         }
