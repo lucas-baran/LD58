@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: SO_FruitData
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Fruits.FruitData
   _name: Yellow fruit
-  _value: 1
-  _sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  _growSteps:
+  - _value: 0
+    _sprite: {fileID: 0}
+    _hasCollisions: 0
+  - _value: 1
+    _sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+    _hasCollisions: 1
