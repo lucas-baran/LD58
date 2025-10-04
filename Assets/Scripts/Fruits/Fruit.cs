@@ -23,15 +23,13 @@ namespace LD58.Fruits
         {
             if (!IsFullyGrown())
             {
-                _currentGrowIndex++;
-                RefreshGrowState();
+                SetGrowStep(_currentGrowIndex + 1);
             }
         }
 
         public void Destroy()
         {
-            _currentGrowIndex = 0;
-            RefreshGrowState();
+            SetGrowStep(0);
         }
 
         public bool IsFullyGrown()
@@ -39,8 +37,11 @@ namespace LD58.Fruits
             return _currentGrowIndex >= _data.MaxGrow;
         }
 
-        private void RefreshGrowState()
+        private void SetGrowStep(
+            int grow_step_index
+            )
         {
+            _currentGrowIndex = grow_step_index;
             FruitData.GrowStep grow_step = _data.GrowSteps[_currentGrowIndex];
             _renderer.sprite = grow_step.Sprite;
             _collider.enabled = grow_step.HasCollisions;
@@ -60,8 +61,7 @@ namespace LD58.Fruits
 
         private void Awake()
         {
-            _currentGrowIndex = _startingGrowStep;
-            RefreshGrowState();
+            SetGrowStep(_startingGrowStep);
         }
     }
 }
