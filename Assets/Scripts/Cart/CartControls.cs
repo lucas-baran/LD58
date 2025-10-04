@@ -1,6 +1,7 @@
 using LD58.Inputs;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace LD58.Cart
 {
@@ -41,6 +42,11 @@ namespace LD58.Cart
             }
         }
 
+        private void Shoot_performed(InputAction.CallbackContext context)
+        {
+            OnShot?.Invoke();
+        }
+
         private void FixedUpdate()
         {
             UpdatePosition();
@@ -51,6 +57,8 @@ namespace LD58.Cart
         {
             _playerActions = InputManager.Instance.Player;
             _camera = Camera.main;
+
+            _playerActions.Shoot.performed += Shoot_performed;
         }
     }
 }
