@@ -76,6 +76,11 @@ namespace LD58.Players
             }
         }
 
+        public int GetFruitCount(FruitData fruit_data)
+        {
+            return _collectedFruits.TryGetValue(fruit_data, out int count) ? count : 0;
+        }
+
         private void Awake()
         {
             foreach (StartingFruit starting_fruit in _startingFruits)
