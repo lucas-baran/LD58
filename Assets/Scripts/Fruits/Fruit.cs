@@ -62,9 +62,10 @@ namespace LD58.Fruits
                 return;
             }
 
+            _health -= fruit.Data.Damage;
+
             if (_health <= 0)
             {
-                _health -= fruit.Data.Damage;
                 _rigidbody.bodyType = RigidbodyType2D.Dynamic;
             }
         }
