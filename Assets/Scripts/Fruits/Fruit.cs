@@ -11,16 +11,18 @@ namespace LD58.Fruits
         [SerializeField] private Rigidbody2D _rigidbody = null;
 
         private FruitData _data;
+        private int _health;
 
         public bool IsMoving => _rigidbody.bodyType == RigidbodyType2D.Dynamic;
         public FruitData Data
         {
             get => _data;
-            set
+            private set
             {
                 if (value != _data)
                 {
                     _data = value;
+                    _health = _data.Health;
                     _renderer.sprite = _data.Sprite;
                     _collider.enabled = _data.HasCollisions;
                 }
@@ -48,16 +50,28 @@ namespace LD58.Fruits
             }
         }
 
-        private void OnHit()
+        private void OnHit(Fruit fruit)
         {
-            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            if (IsMoving)
+            {
+                return;
+            }
+
+            if (_health <= 0)
+            {
+                _health -= fruit.Data.Damage;
+                _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            }
         }
 
         private void OnCollisionEnter2D(
             Collision2D collision
             )
         {
-            OnHit();
+            if (collision.collider.TryGetComponent(out Fruit other_fruit))
+            {
+                other_fruit.OnHit(this);
+            }
         }
 
         private void Awake()
