@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace LD58.Fruits
 {
-    public class Fruit : MonoBehaviour
+    public class Fruit : MonoBehaviour, IFruitCollisionTarget
     {
         [SerializeField] private int _startingGrowStep = 0;
         [SerializeField] private FruitData _startingData = null;
@@ -75,14 +75,9 @@ namespace LD58.Fruits
             }
         }
 
-        private void OnCollisionEnter2D(
-            Collision2D collision
-            )
+        void IFruitCollisionTarget.OnCollision(Fruit other_fruit)
         {
-            if (collision.collider.TryGetComponent(out Fruit other_fruit))
-            {
-                other_fruit.OnHit(this);
-            }
+            other_fruit.OnHit(this);
         }
 
         private void Awake()

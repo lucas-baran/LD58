@@ -4,17 +4,12 @@ using UnityEngine;
 
 namespace LD58.Cart
 {
-    public class CartBasketCollector : MonoBehaviour
+    public class CartBasketCollector : MonoBehaviour, IFruitCollisionTarget
     {
-        private void OnTriggerEnter2D(
-            Collider2D collider
-            )
+        void IFruitCollisionTarget.OnTrigger(Fruit fruit)
         {
-            if (collider.TryGetComponent(out Fruit fruit))
-            {
-                Player.Instance.Inventory.CollectFruit(fruit.Data);
-                FruitGrower.Instance.Destroy(fruit);
-            }
+            Player.Instance.Inventory.CollectFruit(fruit.Data);
+            FruitGrower.Instance.Destroy(fruit);
         }
     }
 }
