@@ -32,6 +32,8 @@ namespace LD58.Fruits
         public void Destroy()
         {
             SetGrowStep(0);
+            _rigidbody.angularVelocity = 0f;
+            _rigidbody.linearVelocity = Vector2.zero;
             _rigidbody.bodyType = RigidbodyType2D.Kinematic;
             transform.SetPositionAndRotation(_initialPosition, Quaternion.identity);
         }
