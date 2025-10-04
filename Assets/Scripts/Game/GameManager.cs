@@ -6,6 +6,8 @@ namespace LD58.Game
 {
     public sealed class GameManager : Singleton<GameManager>
     {
+        [SerializeField] private SceneReference _mainMenuScene;
+
         private bool _isLoading = false;
         private SceneReference _currentScene = null;
 
@@ -37,6 +39,11 @@ namespace LD58.Game
         public async UniTask ReloadCurrentSceneAsync()
         {
             await LoadSceneAsync(_currentScene);
+        }
+
+        public async UniTask LoadMainMenuSceneAsync()
+        {
+            await LoadSceneAsync(_mainMenuScene);
         }
     }
 }
