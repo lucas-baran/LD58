@@ -22,9 +22,13 @@ namespace LD58.Fruits
                 if (value != _data)
                 {
                     _data = value;
-                    _health = _data.Health;
-                    _renderer.sprite = _data.Sprite;
-                    _collider.enabled = _data.HasCollisions;
+
+                    if (_data != null)
+                    {
+                        _health = _data.Health;
+                        _renderer.sprite = _data.Sprite;
+                        _collider.enabled = _data.HasCollisions;
+                    }
                 }
             }
         }
