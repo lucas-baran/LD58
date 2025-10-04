@@ -1,3 +1,4 @@
+using LD58.Levels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -13,8 +14,8 @@ namespace LD58.Fruits
 
         private readonly Queue<Fruit> _fruitQueue = new();
         private readonly List<Fruit> _activeFruits = new();
-
         private readonly List<GrowSpot> _growSpots = new();
+
         private Camera _camera;
 
         public Fruit GetFruit(FruitData fruit_data)
@@ -68,6 +69,18 @@ namespace LD58.Fruits
             return false;
         }
 
+        public void SpawnFruits(LevelData level_data)
+        {
+            for (int i = 0; i < level_data.StartingFruits.Count; i++)
+            {
+                LevelData.FruitPosition fruit_position = level_data.StartingFruits[i];
+                Fruit fruit = GetFruit(fruit_position.FruitData);
+                fruit.transform.position = new Vector3(fruit_position.Position.x, fruit_position.Position.y, fruit.transform.position.z);
+            }
+
+            _growSpots.AddRange(_activeFruits.Select(fruit => new GrowSpot(fruit)));
+        }
+
         private FruitData GetRandomStartingFruit()
         {
             return _startingFruits[Random.Range(0, _startingFruits.Count)];
@@ -103,8 +116,6 @@ namespace LD58.Fruits
         private void Start()
         {
             _camera = Camera.main;
-            _activeFruits.AddRange(FindObjectsByType<Fruit>(FindObjectsSortMode.None));
-            _growSpots.AddRange(_activeFruits.Select(fruit => new GrowSpot(fruit)));
         }
 
         private sealed class GrowSpot

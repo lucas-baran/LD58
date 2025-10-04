@@ -14,7 +14,6 @@ namespace LD58.Levels
         [SerializeField] private LevelData _data;
 
         private CartControls _cartControls;
-        private FruitGrower _fruitGrower;
         private int _shotCount = 0;
         private LevelTax _currentTax;
 
@@ -79,13 +78,13 @@ namespace LD58.Levels
                 OnShotCountIncreased?.Invoke();
             }
 
-            _fruitGrower.GrowFruits();
+            FruitGrower.Instance.GrowFruits();
             _cartControls.Cannon.CanShoot = true;
         }
 
         private async UniTask WaitForMovingFruitsAsync(CancellationToken cancellation_token)
         {
-            await UniTask.WaitWhile(_fruitGrower, fruit_grower => fruit_grower.IsAnyFruitMoving(), cancellationToken: cancellation_token);
+            await UniTask.WaitWhile(FruitGrower.Instance, fruit_grower => fruit_grower.IsAnyFruitMoving(), cancellationToken: cancellation_token);
         }
 
         private void Lose()
@@ -133,10 +132,11 @@ namespace LD58.Levels
         private void Start()
         {
             _cartControls = FindAnyObjectByType<CartControls>();
-            _fruitGrower = FindAnyObjectByType<FruitGrower>();
 
             _cartControls.Cannon.CanShoot = true;
             _cartControls.Cannon.OnShot += CartCannon_OnShot;
+
+            FruitGrower.Instance.SpawnFruits(_data);
         }
 
         private void OnDestroy()
