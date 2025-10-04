@@ -15,6 +15,9 @@ namespace LD58.Cart
         private bool _canShoot;
         private readonly IComparer<FruitData> _fruitShootValueComparer = new FruitShootValueComparer();
 
+        public Vector3 ShootPosition => _fruitParent.transform.position;
+        public Vector3 ShootVelocity => _data.ShootForce * -_fruitParent.up;
+        public Fruit CurrentFruit => _fruitToShoot;
         public bool CanShoot
         {
             get => _canShoot;
@@ -34,8 +37,7 @@ namespace LD58.Cart
         {
             if (_canShoot && _fruitToShoot != null)
             {
-                Vector3 shoot_velocity = _data.ShootForce * -_fruitParent.up;
-                _fruitToShoot.Impulse(shoot_velocity);
+                _fruitToShoot.Impulse(ShootVelocity);
                 _fruitToShoot.EnableCollisions();
                 _fruitToShoot.transform.parent = null;
                 _fruitToShoot.transform.localScale = Vector3.one;

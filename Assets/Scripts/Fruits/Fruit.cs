@@ -16,6 +16,7 @@ namespace LD58.Fruits
         private int _health;
 
         public bool IsMoving => _rigidbody.bodyType == RigidbodyType2D.Dynamic;
+        public float GravityScale => _rigidbody.gravityScale;
         public FruitData Data
         {
             get => _data;
