@@ -22,7 +22,7 @@ namespace LD58.Cart
             await UniTask.WaitWhile(_fruitGrower, fruit_grower => fruit_grower.IsAnyFruitMoving(), cancellationToken: cancellation_token);
         }
 
-        private void CartControls_OnShot()
+        private void CartCannon_OnShot()
         {
             PrepareNextShotAsync(destroyCancellationToken).Forget();
         }
@@ -31,7 +31,13 @@ namespace LD58.Cart
         {
             _fruitGrower = FindAnyObjectByType<FruitGrower>();
 
-            _cartControls.OnShot += CartControls_OnShot;
+            _cartControls.Cannon.CanShoot = true;
+            _cartControls.Cannon.OnShot += CartCannon_OnShot;
+        }
+
+        private void OnDestroy()
+        {
+            _cartControls.Cannon.OnShot -= CartCannon_OnShot;
         }
     }
 }

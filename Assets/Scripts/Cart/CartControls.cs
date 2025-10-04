@@ -1,6 +1,5 @@
 using LD58.Inputs;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace LD58.Cart
@@ -9,11 +8,12 @@ namespace LD58.Cart
     {
         [SerializeField] private CartControlsData _data;
         [SerializeField] private Transform _cannonPivot;
+        [SerializeField] private CartCannon _cannon;
 
         private Inputs_LD58.PlayerActions _playerActions;
         private Camera _camera;
 
-        public event UnityAction OnShot = null;
+        public CartCannon Cannon => _cannon;
 
         private void UpdatePosition()
         {
@@ -44,7 +44,7 @@ namespace LD58.Cart
 
         private void Shoot_performed(InputAction.CallbackContext context)
         {
-            OnShot?.Invoke();
+            _cannon.Shoot();
         }
 
         private void FixedUpdate()

@@ -11,23 +11,40 @@ namespace LD58.Cart
         [SerializeField] private Transform _fruitParent;
 
         private Fruit _fruitToShoot;
+        private bool _canShoot;
+
+        public bool CanShoot
+        {
+            get => _canShoot;
+            set
+            {
+                if (value != _canShoot)
+                {
+                    _canShoot = value;
+                    RefreshCannon();
+                }
+            }
+        }
 
         public event UnityAction OnHasNoFruitToShoot = null;
+        public event UnityAction OnShot = null;
 
         public void Shoot()
         {
-            if (_fruitToShoot != null)
+            if (_canShoot && _fruitToShoot != null)
             {
                 Vector3 shoot_velocity = _data.ShootForce * -_fruitParent.up;
                 _fruitToShoot.Impulse(shoot_velocity);
                 _fruitToShoot.EnableCollisions();
                 _fruitToShoot.transform.parent = null;
+
+                OnShot?.Invoke();
             }
         }
 
-        public void SetCanShoot(bool can_shoot)
+        private void RefreshCannon()
         {
-            if (can_shoot)
+            if (_canShoot)
             {
                 LoadFruitToShoot();
             }
