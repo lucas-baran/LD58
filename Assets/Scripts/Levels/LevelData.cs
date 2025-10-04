@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LD58.Levels
 {
-    [CreateAssetMenu(fileName = "SO_FruitCostData", menuName = "LD58/Taxes/Fruit cost data")]
+    [CreateAssetMenu(fileName = "SO_LevelData", menuName = "LD58/Levels/Level data")]
     public class LevelData : ScriptableObject
     {
         // TODO spawn disposition
