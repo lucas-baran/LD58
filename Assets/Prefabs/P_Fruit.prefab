@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6153179fc0e3d1740bade4bdd585088c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Fruits.Fruit
+  _startingGrowStep: 1
   _data: {fileID: 11400000, guid: 37dc978027aeba343892dd54c2b80afd, type: 2}
   _renderer: {fileID: 6603781690315931020}
+  _collider: {fileID: 4064202819737366780}
   _rigidbody: {fileID: 3085015780177952900}
 --- !u!50 &3085015780177952900
 Rigidbody2D:
