@@ -4,13 +4,25 @@ namespace LD58.Cart
 {
     public class CartBasketMovement : MonoBehaviour
     {
+        [SerializeField] private bool _useSigneOnly = false;
         [SerializeField] private CartBasketMovementData _data;
         [SerializeField] private Transform _cartTransform;
         [SerializeField] private Rigidbody2D _rigidbody;
 
         private void FixedUpdate()
         {
-            transform.position = new Vector3(_cartTransform.position.x, transform.position.y, transform.position.z);
+            float difference = _cartTransform.position.x - transform.position.x;
+
+            if (Mathf.Abs(difference) < _data.AccelerationThreshold
+                && Mathf.Abs(_rigidbody.linearVelocityX) < _data.VelocityThreshold
+                )
+            {
+                transform.position = new Vector3(_cartTransform.position.x, transform.position.y, transform.position.z);
+
+                return;
+            }
+
+            _rigidbody.AddForce(new Vector2(_data.Acceleration * (_useSigneOnly ? Mathf.Sign(difference) : difference), 0f), ForceMode2D.Impulse);
         }
     }
 }
