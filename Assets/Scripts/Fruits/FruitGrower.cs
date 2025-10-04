@@ -1,6 +1,5 @@
 using LD58.Levels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -76,9 +75,8 @@ namespace LD58.Fruits
                 LevelData.FruitPosition fruit_position = level_data.StartingFruits[i];
                 Fruit fruit = GetFruit(fruit_position.FruitData);
                 fruit.transform.position = new Vector3(fruit_position.Position.x, fruit_position.Position.y, fruit.transform.position.z);
+                _growSpots.Add(new GrowSpot(fruit));
             }
-
-            _growSpots.AddRange(_activeFruits.Select(fruit => new GrowSpot(fruit)));
         }
 
         private FruitData GetRandomStartingFruit()
