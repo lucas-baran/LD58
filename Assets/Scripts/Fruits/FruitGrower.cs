@@ -49,8 +49,9 @@ namespace LD58.Fruits
                 else
                 {
                     grow_spot.Fruit.Grow();
-                    grow_spot.Fruit.transform.SetPositionAndRotation(grow_spot.Position, Quaternion.identity);
                 }
+
+                grow_spot.Fruit.transform.SetPositionAndRotation(grow_spot.Position, Quaternion.identity);
             }
         }
 
