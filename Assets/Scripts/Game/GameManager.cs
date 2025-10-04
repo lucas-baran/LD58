@@ -6,18 +6,32 @@ namespace LD58.Game
 {
     public sealed class GameManager : Singleton<GameManager>
     {
+        private bool _isLoading = false;
         private SceneReference _currentScene = null;
 
         public async UniTask LoadSceneAsync(SceneReference scene_reference)
         {
-            LoadSceneParameters load_scene_parameters = new()
+            try
             {
-                loadSceneMode = LoadSceneMode.Single,
-                localPhysicsMode = LocalPhysicsMode.Physics2D,
-            };
+                if (_isLoading)
+                {
+                    return;
+                }
 
-            await SceneManager.LoadSceneAsync(scene_reference.SceneName, load_scene_parameters);
-            _currentScene = scene_reference;
+                _isLoading = true;
+                LoadSceneParameters load_scene_parameters = new()
+                {
+                    loadSceneMode = LoadSceneMode.Single,
+                    localPhysicsMode = LocalPhysicsMode.Physics2D,
+                };
+
+                await SceneManager.LoadSceneAsync(scene_reference.SceneName, load_scene_parameters);
+                _currentScene = scene_reference;
+            }
+            finally
+            {
+                _isLoading = false;
+            }
         }
 
         public async UniTask ReloadCurrentSceneAsync()
