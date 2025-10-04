@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bbdbdcf013507b4293e02766be6dab6, type: 3}
   m_Name: SO_CartBasketMovementData
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Cart.CartBasketMovementData
+  _acceleration: 0.1
+  _accelerationThreshold: 0.01
+  _velocityThreshold: 0.1
