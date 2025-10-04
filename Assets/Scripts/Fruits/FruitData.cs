@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,22 +7,20 @@ namespace LD58.Fruits
     public class FruitData : ScriptableObject
     {
         [SerializeField] private string _name = string.Empty;
-        [SerializeField] private List<GrowStep> _growSteps = new();
+        [SerializeField] private int _value = 1;
+        [SerializeField] private Sprite _sprite;
+        [SerializeField] private bool _hasCollisions;
+        [SerializeField] private List<FruitData> _fruitGrowths = new();
 
         public string Name => _name;
-        public int MaxGrow => _growSteps.Count - 1;
-        public IReadOnlyList<GrowStep> GrowSteps => _growSteps;
+        public bool CanGrow => _fruitGrowths != null && _fruitGrowths.Count > 0;
+        public int Value => _value;
+        public Sprite Sprite => _sprite;
+        public bool HasCollisions => _hasCollisions;
 
-        [Serializable]
-        public sealed class GrowStep
+        public FruitData GetRandomFruitGrowth()
         {
-            [SerializeField] private int _value = 1;
-            [SerializeField] private Sprite _sprite;
-            [SerializeField] private bool _hasCollisions;
-
-            public int Value => _value;
-            public Sprite Sprite => _sprite;
-            public bool HasCollisions => _hasCollisions;
+            return _fruitGrowths[Random.Range(0, _fruitGrowths.Count)];
         }
     }
 }

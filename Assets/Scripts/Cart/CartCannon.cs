@@ -50,8 +50,8 @@ namespace LD58.Cart
                 return;
             }
 
-            CollectedFruit collected_fruit = GetFruitFromInventory();
-            _fruitToShoot = FruitGrower.Instance.GetFruit(grown_step: collected_fruit.GrowStep);
+            FruitData fruit_data = GetFruitFromInventory();
+            _fruitToShoot = FruitGrower.Instance.GetFruit(fruit_data);
             _fruitToShoot.transform.parent = _fruitParent;
             _fruitToShoot.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
@@ -61,7 +61,7 @@ namespace LD58.Cart
             return Player.Instance.Inventory.HasFruits();
         }
 
-        private CollectedFruit GetFruitFromInventory()
+        private FruitData GetFruitFromInventory()
         {
             throw new System.NotImplementedException();
         }

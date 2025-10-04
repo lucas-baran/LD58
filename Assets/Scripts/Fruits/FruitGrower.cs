@@ -7,6 +7,7 @@ namespace LD58.Fruits
 {
     public class FruitGrower : Singleton<FruitGrower>
     {
+        [SerializeField] private List<FruitData> _startingFruits = new();
         [SerializeField] private float _cameraPadding = 1f;
         [SerializeField] private Fruit _fruitPrefab;
 
@@ -16,7 +17,7 @@ namespace LD58.Fruits
         private readonly List<GrowSpot> _growSpots = new();
         private Camera _camera;
 
-        public Fruit GetFruit(int grown_step)
+        public Fruit GetFruit(FruitData fruit_data)
         {
             if (!_fruitQueue.TryDequeue(out Fruit fruit))
             {
@@ -24,14 +25,15 @@ namespace LD58.Fruits
             }
 
             _activeFruits.Add(fruit);
-            fruit.Initialize(grown_step);
+            fruit.gameObject.SetActive(true);
+            fruit.Initialize(fruit_data);
 
             return fruit;
         }
 
         public void Destroy(Fruit fruit)
         {
-            fruit.OnDestroyed();
+            fruit.gameObject.SetActive(false);
             _activeFruits.Remove(fruit);
             _fruitQueue.Enqueue(fruit);
         }
@@ -42,7 +44,7 @@ namespace LD58.Fruits
             {
                 if (grow_spot.Fruit == null)
                 {
-                    grow_spot.Fruit = GetFruit(grown_step: 0);
+                    grow_spot.Fruit = GetFruit(GetRandomStartingFruit());
                 }
                 else
                 {
@@ -63,6 +65,11 @@ namespace LD58.Fruits
             }
 
             return false;
+        }
+
+        private FruitData GetRandomStartingFruit()
+        {
+            return _startingFruits[Random.Range(0, _startingFruits.Count)];
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

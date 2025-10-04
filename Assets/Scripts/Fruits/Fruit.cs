@@ -5,28 +5,34 @@ namespace LD58.Fruits
     public class Fruit : MonoBehaviour
     {
         [SerializeField] private int _startingGrowStep = 0;
-        [SerializeField] private FruitData _data = null;
+        [SerializeField] private FruitData _startingData = null;
         [SerializeField] private SpriteRenderer _renderer = null;
         [SerializeField] private Collider2D _collider = null;
         [SerializeField] private Rigidbody2D _rigidbody = null;
 
-        private int _currentGrowIndex = 0;
+        private FruitData _data;
 
-        public FruitData Data => _data;
         public bool IsMoving => _rigidbody.bodyType == RigidbodyType2D.Dynamic;
-        public int GrowStep => _currentGrowIndex;
+        public FruitData Data
+        {
+            get => _data;
+            set
+            {
+                if (value != _data)
+                {
+                    _data = value;
+                    _renderer.sprite = _data.Sprite;
+                    _collider.enabled = _data.HasCollisions;
+                }
+            }
+        }
 
-        public void Initialize(int grown_step)
+        public void Initialize(FruitData data)
         {
             _rigidbody.angularVelocity = 0f;
             _rigidbody.linearVelocity = Vector2.zero;
             _rigidbody.bodyType = RigidbodyType2D.Kinematic;
-            SetGrowStep(grown_step);
-        }
-
-        public void OnDestroyed()
-        {
-            SetGrowStep(0);
+            Data = data;
         }
 
         public void Impulse(Vector2 velocity)
@@ -36,25 +42,10 @@ namespace LD58.Fruits
 
         public void Grow()
         {
-            if (!IsFullyGrown())
+            if (_data.CanGrow)
             {
-                SetGrowStep(_currentGrowIndex + 1);
+                Data = _data.GetRandomFruitGrowth();
             }
-        }
-
-        public bool IsFullyGrown()
-        {
-            return _currentGrowIndex >= _data.MaxGrow;
-        }
-
-        private void SetGrowStep(
-            int grow_step_index
-            )
-        {
-            _currentGrowIndex = grow_step_index;
-            FruitData.GrowStep grow_step = _data.GrowSteps[_currentGrowIndex];
-            _renderer.sprite = grow_step.Sprite;
-            _collider.enabled = grow_step.HasCollisions;
         }
 
         private void OnHit()
@@ -71,7 +62,7 @@ namespace LD58.Fruits
 
         private void Awake()
         {
-            SetGrowStep(_startingGrowStep);
+            Data = _startingData;
         }
     }
 }
