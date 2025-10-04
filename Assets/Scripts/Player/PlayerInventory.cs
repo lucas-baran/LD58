@@ -68,11 +68,17 @@ namespace LD58.Players
             return best_fruit_data;
         }
 
-        public void UnloadFruit(FruitData fruit_data)
+        public void UnloadFruit(FruitData fruit_data, int count = 1)
         {
             if (_collectedFruits.ContainsKey(fruit_data))
             {
-                _collectedFruits[fruit_data]--;
+                _collectedFruits[fruit_data] -= count;
+
+                if (_collectedFruits[fruit_data] < 0)
+                {
+                    Debug.LogError("Negative amount of fruits");
+                    _collectedFruits[fruit_data] = 0;
+                }
             }
         }
 
