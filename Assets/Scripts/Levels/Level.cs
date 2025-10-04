@@ -40,6 +40,11 @@ namespace LD58.Levels
 
             _currentTax = null;
             OnTaxPayed?.Invoke();
+
+            if (HasWon())
+            {
+                Win();
+            }
         }
 
         public bool CanPayTax()
