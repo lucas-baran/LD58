@@ -45,5 +45,10 @@ namespace LD58.Game
         {
             await LoadSceneAsync(_mainMenuScene);
         }
+
+        private void Start()
+        {
+            LoadMainMenuSceneAsync().Forget();
+        }
     }
 }
