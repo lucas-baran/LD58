@@ -108,13 +108,42 @@ namespace LD58.Fruits
 
         private sealed class GrowSpot
         {
+            public Fruit _fruit;
+
             public readonly Vector3 Position;
-            public Fruit Fruit;
+            public Fruit Fruit
+            {
+                get => _fruit;
+                set
+                {
+                    if (value == _fruit)
+                    {
+                        return;
+                    }
+
+                    if (_fruit != null)
+                    {
+                        _fruit.OnFall -= Fruit_OnFall;
+                    }
+
+                    _fruit = value;
+
+                    if (_fruit != null)
+                    {
+                        _fruit.OnFall += Fruit_OnFall;
+                    }
+                }
+            }
 
             public GrowSpot(Fruit fruit)
             {
                 Position = fruit.transform.position;
                 Fruit = fruit;
+            }
+
+            private void Fruit_OnFall()
+            {
+                Fruit = null;
             }
         }
     }
