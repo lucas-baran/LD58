@@ -1,18 +1,24 @@
 using Cysharp.Threading.Tasks;
+using LD58.Cart;
 using LD58.Fruits;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace LD58.Cart
+namespace LD58.Levels
 {
-    public class CartGameplay : MonoBehaviour
+    public class Level : Singleton<Level>
     {
-        [SerializeField] private CartControls _cartControls;
+        [SerializeField] private LevelData _data;
 
+        private CartControls _cartControls;
         private FruitGrower _fruitGrower;
+        private int _shotCount = 0;
 
+        public event UnityAction OnShot = null;
         public event UnityAction OnLose = null;
+
+        public int ShotCount => _shotCount;
 
         private async UniTaskVoid PrepareNextShotAsync(CancellationToken cancellation_token)
         {
@@ -34,7 +40,22 @@ namespace LD58.Cart
 
         private void CartCannon_OnShot()
         {
-            PrepareNextShotAsync(destroyCancellationToken).Forget();
+            _shotCount++;
+
+            if (HasLost())
+            {
+                Lose();
+            }
+            else
+            {
+                OnShot?.Invoke();
+                PrepareNextShotAsync(destroyCancellationToken).Forget();
+            }
+        }
+
+        private bool HasLost()
+        {
+            return false;
         }
 
         private void Cannon_OnHasNoFruitToShoot()
@@ -44,6 +65,7 @@ namespace LD58.Cart
 
         private void Start()
         {
+            _cartControls = FindAnyObjectByType<CartControls>();
             _fruitGrower = FindAnyObjectByType<FruitGrower>();
 
             _cartControls.Cannon.CanShoot = true;
