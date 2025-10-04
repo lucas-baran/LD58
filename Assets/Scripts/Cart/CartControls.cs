@@ -1,5 +1,6 @@
 using LD58.Inputs;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LD58.Cart
 {
@@ -10,6 +11,8 @@ namespace LD58.Cart
 
         private Inputs_LD58.PlayerActions _playerActions;
         private Camera _camera;
+
+        public event UnityAction OnShot = null;
 
         private void UpdatePosition()
         {
