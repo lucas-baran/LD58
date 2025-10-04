@@ -35,6 +35,39 @@ namespace LD58.Players
             return false;
         }
 
+        public FruitData GetBestFruit(IComparer<FruitData> fruit_comparer)
+        {
+            FruitData best_fruit_data = null;
+
+            foreach ((FruitData fruit_data, int count) in _collectedFruits)
+            {
+                if (count == 0)
+                {
+                    continue;
+                }
+
+                if (best_fruit_data == null)
+                {
+                    best_fruit_data = fruit_data;
+                }
+                else if (fruit_comparer.Compare(fruit_data, best_fruit_data) > 0)
+                {
+                    best_fruit_data = fruit_data;
+                }
+            }
+
+            if (best_fruit_data != null)
+            {
+                UnloadFruit(best_fruit_data);
+            }
+            else
+            {
+                Debug.LogError("No fruit in inventory!");
+            }
+
+            return best_fruit_data;
+        }
+
         public void UnloadFruit(FruitData fruit_data)
         {
             if (_collectedFruits.ContainsKey(fruit_data))
