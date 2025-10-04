@@ -91,5 +91,10 @@ namespace LD58.Fruits
         {
             Data = _startingData;
         }
+
+        private void OnDisable()
+        {
+            _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
 }
