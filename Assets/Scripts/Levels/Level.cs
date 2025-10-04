@@ -110,7 +110,7 @@ namespace LD58.Levels
             {
                 LevelTax level_tax = _data.Taxes[i];
 
-                if (_shotCount >= level_tax.StartsAtShot)
+                if (level_tax.StartsAtShot >= _shotCount)
                 {
                     _currentTax = level_tax;
 
