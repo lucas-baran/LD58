@@ -37,6 +37,7 @@ namespace LD58.Levels
                 Player.Instance.Inventory.UnloadFruit(fruit_cost.FruitData, fruit_cost.Quantity);
             }
 
+            _currentTax = null;
             OnTaxPayed?.Invoke();
         }
 

@@ -10,9 +10,17 @@ namespace LD58.UI
 
         private void RefreshUI()
         {
-            _fruitCostUI.SetCost(Level.Instance.CurrentTax.FruitCost);
-            _taxPanelUI.SetRemainingShots(Level.Instance.RemainingShotCount);
-            _taxPanelUI.SetButtonEnabled(Level.Instance.CanPayTaxes());
+            if (Level.Instance.CurrentTax == null)
+            {
+                _taxPanelUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                _taxPanelUI.gameObject.SetActive(true);
+                _fruitCostUI.SetCost(Level.Instance.CurrentTax.FruitCost);
+                _taxPanelUI.SetRemainingShots(Level.Instance.RemainingShotCount);
+                _taxPanelUI.SetButtonEnabled(Level.Instance.CanPayTaxes());
+            }
         }
 
         private void Level_OnShotCountIncreased()
@@ -25,10 +33,16 @@ namespace LD58.UI
             _taxPanelUI.gameObject.SetActive(false);
         }
 
+        private void Level_OnTaxPayed()
+        {
+            RefreshUI();
+        }
+
         private void Start()
         {
             Level.Instance.OnShotCountIncreased += Level_OnShotCountIncreased;
             Level.Instance.OnLose += Level_OnLose;
+            Level.Instance.OnTaxPayed += Level_OnTaxPayed;
 
             RefreshUI();
         }
@@ -39,6 +53,7 @@ namespace LD58.UI
             {
                 Level.Instance.OnShotCountIncreased -= Level_OnShotCountIncreased;
                 Level.Instance.OnLose -= Level_OnLose;
+                Level.Instance.OnTaxPayed -= Level_OnTaxPayed;
             }
         }
     }
