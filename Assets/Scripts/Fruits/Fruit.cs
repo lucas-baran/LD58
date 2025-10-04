@@ -11,6 +11,7 @@ namespace LD58.Fruits
         [SerializeField] private Rigidbody2D _rigidbody = null;
 
         private int _currentGrowIndex = 0;
+        private Vector3 _initialPosition;
 
         public FruitData Data => _data;
         public bool IsMoving => _rigidbody.bodyType == RigidbodyType2D.Dynamic;
@@ -32,6 +33,7 @@ namespace LD58.Fruits
         {
             SetGrowStep(0);
             _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            transform.SetPositionAndRotation(_initialPosition, Quaternion.identity);
         }
 
         public bool IsFullyGrown()
@@ -63,6 +65,7 @@ namespace LD58.Fruits
 
         private void Awake()
         {
+            _initialPosition = transform.position;
             SetGrowStep(_startingGrowStep);
         }
     }
