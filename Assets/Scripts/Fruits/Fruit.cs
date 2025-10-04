@@ -42,6 +42,11 @@ namespace LD58.Fruits
             _rigidbody.AddForce(velocity, ForceMode2D.Impulse);
         }
 
+        public void EnableCollisions()
+        {
+            _collider.enabled = true;
+        }
+
         public void Grow()
         {
             if (_data.CanGrow)

@@ -20,6 +20,7 @@ namespace LD58.Cart
             {
                 Vector3 shoot_velocity = _data.ShootForce * -_fruitParent.up;
                 _fruitToShoot.Impulse(shoot_velocity);
+                _fruitToShoot.EnableCollisions();
                 _fruitToShoot.transform.parent = null;
             }
         }
