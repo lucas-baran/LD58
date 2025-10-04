@@ -13,6 +13,7 @@ namespace LD58.Fruits
         private int _currentGrowIndex = 0;
 
         public FruitData Data => _data;
+        public bool IsMoving => _rigidbody.bodyType == RigidbodyType2D.Dynamic;
 
         public CollectedFruit GetCollectedFruit()
         {
@@ -30,6 +31,7 @@ namespace LD58.Fruits
         public void Destroy()
         {
             SetGrowStep(0);
+            _rigidbody.bodyType = RigidbodyType2D.Kinematic;
         }
 
         public bool IsFullyGrown()
