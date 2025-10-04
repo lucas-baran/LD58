@@ -13,7 +13,7 @@ namespace LD58.Cart
             if (collider.TryGetComponent(out Fruit fruit))
             {
                 Player.Instance.Inventory.CollectFruit(fruit);
-                fruit.Destroy();
+                FruitGrower.Instance.Destroy(fruit);
             }
         }
     }

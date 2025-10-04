@@ -5,13 +5,16 @@ namespace LD58.Fruits
         public FruitData Data { get; }
         public int GrowStep { get; }
 
-        public CollectedFruit(
-            FruitData data,
-            int grow_step
-            )
+        public CollectedFruit(Fruit fruit)
         {
-            Data = data;
-            GrowStep = grow_step;
+            Data = fruit.Data;
+            GrowStep = fruit.GrowStep;
+        }
+
+        public CollectedFruit(FruitData fruit_data)
+        {
+            Data = fruit_data;
+            GrowStep = fruit_data.GrowSteps.Count - 1;
         }
     }
 }

@@ -1,27 +1,58 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace LD58.Fruits
 {
-    public class FruitGrower : MonoBehaviour
+    public class FruitGrower : Singleton<FruitGrower>
     {
         [SerializeField] private float _cameraPadding = 1f;
+        [SerializeField] private Fruit _fruitPrefab;
 
-        private readonly List<Fruit> _fruits = new();
+        private readonly Queue<Fruit> _fruitQueue = new();
+        private readonly List<Fruit> _activeFruits = new();
+
+        private readonly List<GrowSpot> _growSpots = new();
         private Camera _camera;
+
+        public Fruit GetFruit(int grown_step)
+        {
+            if (!_fruitQueue.TryDequeue(out Fruit fruit))
+            {
+                fruit = Instantiate(_fruitPrefab);
+            }
+
+            _activeFruits.Add(fruit);
+            fruit.Initialize(grown_step);
+
+            return fruit;
+        }
+
+        public void Destroy(Fruit fruit)
+        {
+            fruit.OnDestroyed();
+            _activeFruits.Remove(fruit);
+            _fruitQueue.Enqueue(fruit);
+        }
 
         public void GrowFruits()
         {
-            foreach (Fruit fruit in _fruits)
+            foreach (GrowSpot grow_spot in _growSpots)
             {
-                fruit.Grow();
+                if (grow_spot.Fruit == null)
+                {
+                    grow_spot.Fruit = GetFruit(grown_step: 0);
+                }
+
+                grow_spot.Fruit.Grow();
+                grow_spot.Fruit.transform.SetPositionAndRotation(grow_spot.Position, Quaternion.identity);
             }
         }
 
         public bool IsAnyFruitMoving()
         {
-            foreach (Fruit fruit in _fruits)
+            foreach (Fruit fruit in _activeFruits)
             {
                 if (fruit.IsMoving)
                 {
@@ -48,11 +79,13 @@ namespace LD58.Fruits
 
         private void Update()
         {
-            foreach (Fruit fruit in _fruits)
+            for (int fruit_index = _activeFruits.Count - 1; fruit_index >= 0; fruit_index--)
             {
+                Fruit fruit = _activeFruits[fruit_index];
+
                 if (IsOutOfBound(fruit))
                 {
-                    fruit.Destroy();
+                    Destroy(fruit);
                 }
             }
         }
@@ -60,7 +93,20 @@ namespace LD58.Fruits
         private void Start()
         {
             _camera = Camera.main;
-            _fruits.AddRange(FindObjectsByType<Fruit>(FindObjectsSortMode.None));
+            _activeFruits.AddRange(FindObjectsByType<Fruit>(FindObjectsSortMode.None));
+            _growSpots.AddRange(_activeFruits.Select(fruit => new GrowSpot(fruit)));
+        }
+
+        private sealed class GrowSpot
+        {
+            public readonly Vector3 Position;
+            public Fruit Fruit;
+
+            public GrowSpot(Fruit fruit)
+            {
+                Position = fruit.transform.position;
+                Fruit = fruit;
+            }
         }
     }
 }
