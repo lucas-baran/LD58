@@ -22,7 +22,10 @@ namespace LD58
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
-            _sceneName = _sceneAsset.name;
+            if (_sceneAsset != null)
+            {
+                _sceneName = _sceneAsset.name;
+            }
         }
 #endif
     }
