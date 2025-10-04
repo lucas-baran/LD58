@@ -16,3 +16,48 @@ MonoBehaviour:
   - _fruitCost: {fileID: 11400000, guid: 829987a3dd4f7ed499fff82095be3ac2, type: 2}
     _startsAtShot: 0
     _shotCountBeforePaying: 5
+  _startingFruits:
+  - _position: {x: 2.3964868, y: -0.7722013}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -2.556253, y: -1.29144}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -2.343232, y: 0.33284545}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 2.116896, y: 0.8121428}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 3.6346707, y: 0.42604208}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 4.3802443, y: -0.73225975}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 3.4216497, y: -1.5710301}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 1.3846359, y: -1.7441099}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 0.585807, y: -0.57249415}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 0.43935508, y: 0.5325525}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -0.54586726, y: 0.49261117}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -0.6257501, y: -0.5991216}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -0.38610148, y: -1.5444024}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 0.585807, y: -2.6760764}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 1.5310879, y: -3.0355494}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -0.9053402, y: -2.6494489}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -1.3979514, y: -1.5444024}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -2.849157, y: -2.4763694}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -3.0488644, y: -0.26627588}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: -1.4512064, y: 1.1583023}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 0.5059242, y: 1.2914402}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
+  - _position: {x: 2.7825868, y: 1.1982436}
+    _fruitData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
