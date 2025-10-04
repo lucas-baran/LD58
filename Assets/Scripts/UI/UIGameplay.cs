@@ -19,7 +19,7 @@ namespace LD58.UI
                 _taxPanelUI.gameObject.SetActive(true);
                 _fruitCostUI.SetCost(Level.Instance.CurrentTax.FruitCost);
                 _taxPanelUI.SetRemainingShots(Level.Instance.RemainingShotCount);
-                _taxPanelUI.SetButtonEnabled(Level.Instance.CanPayTaxes());
+                _taxPanelUI.SetButtonEnabled(Level.Instance.CanPayTax());
             }
         }
 

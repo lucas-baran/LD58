@@ -26,7 +26,7 @@ namespace LD58.Levels
 
         public void PayTaxes()
         {
-            if (!CanPayTaxes())
+            if (!CanPayTax())
             {
                 return;
             }
@@ -41,7 +41,7 @@ namespace LD58.Levels
             OnTaxPayed?.Invoke();
         }
 
-        public bool CanPayTaxes()
+        public bool CanPayTax()
         {
             if (_currentTax == null)
             {
@@ -75,6 +75,12 @@ namespace LD58.Levels
             }
             else
             {
+                // Automatically pay tax if player has no shot left but can pay
+                if (TaxIsDue())
+                {
+                    PayTaxes();
+                }
+
                 UpdateCurrentTax();
                 OnShotCountIncreased?.Invoke();
             }
@@ -121,7 +127,12 @@ namespace LD58.Levels
         private bool HasLost()
         {
             return !Player.Instance.Inventory.HasFruits()
-                || (_currentTax != null && RemainingShotCount <= 0);
+                || (TaxIsDue() && !CanPayTax());
+        }
+
+        private bool TaxIsDue()
+        {
+            return _currentTax != null && RemainingShotCount <= 0;
         }
 
         protected override void Awake()
