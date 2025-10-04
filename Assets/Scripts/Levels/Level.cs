@@ -19,6 +19,7 @@ namespace LD58.Levels
         private LevelTax _currentTax;
 
         public event UnityAction OnShotCountIncreased = null;
+        public event UnityAction OnTaxPayed = null;
         public event UnityAction OnLose = null;
 
         public int RemainingShotCount => _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying - _shotCount;
@@ -26,7 +27,7 @@ namespace LD58.Levels
 
         public void PayTaxes()
         {
-            if (_currentTax == null)
+            if (!CanPayTaxes())
             {
                 return;
             }
@@ -36,6 +37,8 @@ namespace LD58.Levels
                 SingleFruitCost fruit_cost = _currentTax.FruitCost.FruitCosts[i];
                 Player.Instance.Inventory.UnloadFruit(fruit_cost.FruitData, fruit_cost.Quantity);
             }
+
+            OnTaxPayed?.Invoke();
         }
 
         public bool CanPayTaxes()
