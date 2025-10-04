@@ -60,5 +60,10 @@ namespace LD58.Cart
 
             _playerActions.Shoot.performed += Shoot_performed;
         }
+
+        private void OnDestroy()
+        {
+            _playerActions.Shoot.performed -= Shoot_performed;
+        }
     }
 }
