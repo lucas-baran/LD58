@@ -6,6 +6,7 @@ namespace LD58.Fruits
     {
         [SerializeField] private int _startingGrowStep = 0;
         [SerializeField] private FruitData _startingData = null;
+        [SerializeField] private Transform _sizeTransform = null;
         [SerializeField] private SpriteRenderer _renderer = null;
         [SerializeField] private Collider2D _collider = null;
         [SerializeField] private Rigidbody2D _rigidbody = null;
@@ -26,7 +27,9 @@ namespace LD58.Fruits
                     if (_data != null)
                     {
                         _health = _data.Health;
+                        _sizeTransform.localScale = new Vector3(_data.Size, _data.Size, _data.Size);
                         _renderer.sprite = _data.Sprite;
+                        _renderer.color = _data.Color;
                         _collider.enabled = _data.HasCollisions;
                     }
                 }

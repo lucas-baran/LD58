@@ -11,7 +11,9 @@ namespace LD58.Fruits
         [SerializeField] private int _shootValue = 1;
         [SerializeField] private int _health = 1;
         [SerializeField] private int _damage = 1;
+        [SerializeField] private float _size = 0.3f;
         [SerializeField] private Sprite _sprite;
+        [SerializeField] private Color _color = Color.white;
         [SerializeField] private bool _hasCollisions;
         [SerializeField] private List<FruitData> _fruitGrowths = new();
 
@@ -21,7 +23,9 @@ namespace LD58.Fruits
         public int ShootValue => _shootValue;
         public int Health => _health;
         public int Damage => _damage;
+        public float Size => _size;
         public Sprite Sprite => _sprite;
+        public Color Color => _color;
         public bool HasCollisions => _hasCollisions;
 
         public FruitData GetRandomFruitGrowth()
