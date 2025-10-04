@@ -15,6 +15,7 @@ namespace LD58.UI
         {
             _countText.text = FormatFruitQuantity(fruit_cost);
             _icon.sprite = fruit_cost.FruitData.Sprite;
+            _icon.color = fruit_cost.FruitData.Color;
         }
 
         private string FormatFruitQuantity(SingleFruitCost fruit_cost)
