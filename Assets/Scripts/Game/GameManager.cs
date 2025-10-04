@@ -21,13 +21,8 @@ namespace LD58.Game
                 }
 
                 _isLoading = true;
-                LoadSceneParameters load_scene_parameters = new()
-                {
-                    loadSceneMode = LoadSceneMode.Single,
-                    localPhysicsMode = LocalPhysicsMode.Physics2D,
-                };
 
-                await SceneManager.LoadSceneAsync(scene_reference.SceneName, load_scene_parameters);
+                await SceneManager.LoadSceneAsync(scene_reference.SceneName, LoadSceneMode.Single);
                 _currentScene = scene_reference;
             }
             finally
