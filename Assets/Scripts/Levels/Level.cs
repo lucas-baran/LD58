@@ -121,7 +121,7 @@ namespace LD58.Levels
         private bool HasLost()
         {
             return !Player.Instance.Inventory.HasFruits()
-                || (_currentTax != null && _shotCount > _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying);
+                || (_currentTax != null && RemainingShotCount <= 0);
         }
 
         protected override void Awake()
