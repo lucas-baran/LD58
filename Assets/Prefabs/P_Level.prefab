@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5decdbc927871541a0fe885af1f3384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Levels.Level
+  _dontDestroyOnLoad: 0
   _data: {fileID: 11400000, guid: a6124cacd7b2bdc4fbbf1671e8f04b03, type: 2}

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f2ded979edc3242ac83875108c3ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Players.Player
+  _dontDestroyOnLoad: 0
   _inventory: {fileID: 5342000259448075758}
 --- !u!114 &5342000259448075758
 MonoBehaviour:
