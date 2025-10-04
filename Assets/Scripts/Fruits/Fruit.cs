@@ -4,6 +4,7 @@ namespace LD58.Fruits
 {
     public class Fruit : MonoBehaviour
     {
+        [SerializeField] private int _startingGrowStep = 0;
         [SerializeField] private FruitData _data = null;
         [SerializeField] private SpriteRenderer _renderer = null;
         [SerializeField] private Collider2D _collider = null;
@@ -59,7 +60,7 @@ namespace LD58.Fruits
 
         private void Awake()
         {
-            _currentGrowIndex = 0;
+            _currentGrowIndex = _startingGrowStep;
             RefreshGrowState();
         }
     }
