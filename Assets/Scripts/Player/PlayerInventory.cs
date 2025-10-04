@@ -9,34 +9,46 @@ namespace LD58.Players
     {
         [SerializeField] private List<StartingFruit> _startingFruits = new();
 
-        private readonly List<FruitData> _collectedFruits = new();
+        private readonly Dictionary<FruitData, int> _collectedFruits = new();
 
         public void CollectFruit(
-            Fruit fruit
+            FruitData fruit_data
             )
         {
-            if (fruit != null)
+            if (fruit_data != null)
             {
-                _collectedFruits.Add(fruit.Data);
+                _collectedFruits.TryAdd(fruit_data, 0);
+                _collectedFruits[fruit_data]++;
             }
         }
 
         public bool HasFruits()
         {
-            return _collectedFruits.Count > 0;
+            foreach (int count in _collectedFruits.Values)
+            {
+                if (count > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void UnloadFruit(FruitData fruit_data)
         {
-            _collectedFruits.Remove(fruit_data);
+            if (_collectedFruits.ContainsKey(fruit_data))
+            {
+                _collectedFruits[fruit_data]--;
+            }
         }
 
         private void Awake()
         {
             foreach (StartingFruit starting_fruit in _startingFruits)
             {
-                _collectedFruits.Capacity = _collectedFruits.Capacity + starting_fruit.Count;
-                _collectedFruits.Add(starting_fruit.FruitData);
+                _collectedFruits.TryAdd(starting_fruit.FruitData, 0);
+                _collectedFruits[starting_fruit.FruitData] += starting_fruit.Count;
             }
         }
 
