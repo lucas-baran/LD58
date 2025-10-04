@@ -39,6 +39,7 @@ namespace LD58.Fruits
 
         public void Impulse(Vector2 velocity)
         {
+            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
             _rigidbody.AddForce(velocity, ForceMode2D.Impulse);
         }
 
