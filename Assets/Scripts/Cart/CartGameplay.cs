@@ -13,8 +13,10 @@ namespace LD58.Cart
 
         private async UniTaskVoid PrepareNextShotAsync(CancellationToken cancellation_token)
         {
+            _cartControls.Cannon.CanShoot = false;
             await WaitForMovingFruitsAsync(cancellation_token);
             _fruitGrower.GrowFruits();
+            _cartControls.Cannon.CanShoot = true;
         }
 
         private async UniTask WaitForMovingFruitsAsync(CancellationToken cancellation_token)
