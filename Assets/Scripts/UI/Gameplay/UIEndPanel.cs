@@ -1,9 +1,11 @@
 using Cysharp.Threading.Tasks;
 using LD58.Game;
+using LD58.Inputs;
 using LD58.Levels;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace LD58.UI
@@ -44,10 +46,24 @@ namespace LD58.UI
             GameManager.Instance.LoadMainMenuSceneAsync().Forget();
         }
 
+        private void Submit_performed(InputAction.CallbackContext context)
+        {
+            ReplayButton_OnClick();
+        }
+
+        private void Cancel_performed(InputAction.CallbackContext context)
+        {
+            QuitToMenuButton_OnClick();
+        }
+
         private void Start()
         {
             Level.Instance.OnLose += Level_OnLose;
             Level.Instance.OnWin += Level_OnWin;
+
+            InputManager.Instance.UI.Submit.performed += Submit_performed;
+            InputManager.Instance.UI.Cancel.performed += Cancel_performed;
+
             _replayButton.onClick.AddListener(ReplayButton_OnClick);
             _quitToMenuButton.onClick.AddListener(QuitToMenuButton_OnClick);
             gameObject.SetActive(false);
@@ -55,6 +71,12 @@ namespace LD58.UI
 
         private void OnDestroy()
         {
+            if (InputManager.HasInstance)
+            {
+                InputManager.Instance.UI.Submit.performed -= Submit_performed;
+                InputManager.Instance.UI.Cancel.performed -= Cancel_performed;
+            }
+
             _replayButton.onClick.RemoveListener(ReplayButton_OnClick);
             _quitToMenuButton.onClick.RemoveListener(QuitToMenuButton_OnClick);
         }
