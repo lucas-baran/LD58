@@ -183,6 +183,7 @@ MonoBehaviour:
   _defaultScenarioData: {fileID: 11400000, guid: 3c88c275971dfed4ea1e7fc0a8028800, type: 2}
   _scenarioDatas:
   - {fileID: 11400000, guid: 3c88c275971dfed4ea1e7fc0a8028800, type: 2}
+  - {fileID: 11400000, guid: 34415c0d2ad5a64479565a834b04001a, type: 2}
 --- !u!223 &1023969256946324381
 Canvas:
   m_ObjectHideFlags: 0
