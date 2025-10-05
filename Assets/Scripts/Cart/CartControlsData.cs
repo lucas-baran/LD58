@@ -9,10 +9,12 @@ namespace LD58.Cart
         [SerializeField] private float _levelBoundsPadding = 2f;
         [SerializeField] private float _aimSpeed = 50f;
         [SerializeField] private float _maxAimAngle = 50f;
+        [SerializeField] private float _switchFruitTime = 0.5f;
 
         public float MovementSpeed => _movementSpeed;
         public float LevelBoundsPadding => _levelBoundsPadding;
         public float AimSpeed => _aimSpeed;
         public float MaxAimAngle => _maxAimAngle;
+        public float SwitchFruitTime => _switchFruitTime;
     }
 }

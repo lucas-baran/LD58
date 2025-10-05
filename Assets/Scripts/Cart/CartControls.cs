@@ -12,6 +12,7 @@ namespace LD58.Cart
 
         private Inputs_LD58.PlayerActions _playerActions;
         private Camera _camera;
+        private float _lastFruitSwitchTime = 0f;
 
         public CartCannon Cannon => _cannon;
 
@@ -56,9 +57,40 @@ namespace LD58.Cart
             }
         }
 
+        private void UpdateFruitToShoot()
+        {
+            float switch_fruit = _playerActions.SwitchFruit.ReadValue<float>();
+
+            if (Mathf.Approximately(switch_fruit, 0f))
+            {
+                return;
+            }
+
+            if (Time.time - _lastFruitSwitchTime < _data.SwitchFruitTime)
+            {
+                return;
+            }
+
+            if (switch_fruit > 0f)
+            {
+                _cannon.NextFruit();
+            }
+            else
+            {
+                _cannon.PreviousFruit();
+            }
+
+            _lastFruitSwitchTime = Time.time;
+        }
+
         private void Shoot_performed(InputAction.CallbackContext context)
         {
             _cannon.Shoot();
+        }
+
+        private void Update()
+        {
+            UpdateFruitToShoot();
         }
 
         private void FixedUpdate()

@@ -22,6 +22,21 @@ namespace LD58.Players
             }
         }
 
+        public void GetFruitsInInventory(
+            List<FruitData> fruit_datas
+            )
+        {
+            fruit_datas.Clear();
+
+            foreach ((FruitData fruit_data, int count) in _collectedFruits)
+            {
+                if (count > 0)
+                {
+                    fruit_datas.Add(fruit_data);
+                }
+            }
+        }
+
         public bool HasFruits()
         {
             foreach (int count in _collectedFruits.Values)
@@ -54,15 +69,6 @@ namespace LD58.Players
                 {
                     best_fruit_data = fruit_data;
                 }
-            }
-
-            if (best_fruit_data != null)
-            {
-                UnloadFruit(best_fruit_data);
-            }
-            else
-            {
-                Debug.LogError("No fruit in inventory!");
             }
 
             return best_fruit_data;
