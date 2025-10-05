@@ -1,7 +1,9 @@
 using Cysharp.Threading.Tasks;
 using LD58.Game;
+using LD58.Inputs;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace LD58.UI
@@ -51,10 +53,32 @@ namespace LD58.UI
             GameManager.Instance.LoadSceneAsync(_scenarioDatas[_currentScenarioIndex].SceneReference).Forget();
         }
 
+        private void TriggerNavigation_performed(InputAction.CallbackContext context)
+        {
+            float navigation = context.ReadValue<float>();
+
+            if (navigation < 0f)
+            {
+                PreviousScenarioButton_OnClick();
+            }
+            else
+            {
+                NextScenarioButton_OnClick();
+            }
+        }
+
+        private void Submit_performed(InputAction.CallbackContext context)
+        {
+            LaunchScenarioButton_OnClick();
+        }
+
         private void Start()
         {
             _currentScenarioIndex = _scenarioDatas.IndexOf(_defaultScenarioData);
             RefreshScenario();
+
+            InputManager.Instance.UI.TriggerNavigation.performed += TriggerNavigation_performed;
+            InputManager.Instance.UI.Submit.performed += Submit_performed;
 
             _previousScenarioButton.onClick.AddListener(PreviousScenarioButton_OnClick);
             _nextScenarioButton.onClick.AddListener(NextScenarioButton_OnClick);
@@ -63,6 +87,12 @@ namespace LD58.UI
 
         private void OnDestroy()
         {
+            if (InputManager.HasInstance)
+            {
+                InputManager.Instance.UI.TriggerNavigation.performed -= TriggerNavigation_performed;
+                InputManager.Instance.UI.Submit.performed -= Submit_performed;
+            }
+
             _previousScenarioButton.onClick.RemoveListener(PreviousScenarioButton_OnClick);
             _nextScenarioButton.onClick.RemoveListener(NextScenarioButton_OnClick);
             _launchScenarioButton.onClick.RemoveListener(LaunchScenarioButton_OnClick);
