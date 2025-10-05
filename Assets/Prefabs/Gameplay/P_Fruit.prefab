@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Fruits.Fruit
   _startingGrowStep: 1
+  _sortingOrder: 0
   _startingData: {fileID: 11400000, guid: 664b89eb6b1f8d447a7e2b3e8a215c6a, type: 2}
   _spriteSizeTransform: {fileID: 5484620041821913201}
   _colliderSizeTransform: {fileID: 7656906967238149311}
