@@ -120,6 +120,24 @@ namespace LD58.Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchFruit"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b5ced51-de99-4018-a347-292cf5e49b71"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PayTax"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5c7bcd2-7091-433d-a37c-8fb1cee78427"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -276,6 +294,83 @@ namespace LD58.Inputs
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""b19780e4-4360-432d-a604-ed49bc851911"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchFruit"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""79ac9330-1893-4bd1-9d92-9597794a14f7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""SwitchFruit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""25113234-42f0-48d3-8c95-312fcbb61df7"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""SwitchFruit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""6d866fe9-e8b3-4e55-b0bb-d2d8861a27c2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchFruit"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""66ec939c-9fc3-4c4a-b1fa-4c6d9f60f272"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchFruit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0b008c9e-f790-4ab4-8531-362bfa2907ae"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchFruit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd61440e-8a9f-47ef-8ad5-afd0552f5326"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PayTax"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -298,6 +393,8 @@ namespace LD58.Inputs
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
             m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+            m_Player_SwitchFruit = m_Player.FindAction("SwitchFruit", throwIfNotFound: true);
+            m_Player_PayTax = m_Player.FindAction("PayTax", throwIfNotFound: true);
         }
 
         ~@Inputs_LD58()
@@ -381,6 +478,8 @@ namespace LD58.Inputs
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Aim;
         private readonly InputAction m_Player_Shoot;
+        private readonly InputAction m_Player_SwitchFruit;
+        private readonly InputAction m_Player_PayTax;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -404,6 +503,14 @@ namespace LD58.Inputs
             /// Provides access to the underlying input action "Player/Shoot".
             /// </summary>
             public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/SwitchFruit".
+            /// </summary>
+            public InputAction @SwitchFruit => m_Wrapper.m_Player_SwitchFruit;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/PayTax".
+            /// </summary>
+            public InputAction @PayTax => m_Wrapper.m_Player_PayTax;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -439,6 +546,12 @@ namespace LD58.Inputs
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @SwitchFruit.started += instance.OnSwitchFruit;
+                @SwitchFruit.performed += instance.OnSwitchFruit;
+                @SwitchFruit.canceled += instance.OnSwitchFruit;
+                @PayTax.started += instance.OnPayTax;
+                @PayTax.performed += instance.OnPayTax;
+                @PayTax.canceled += instance.OnPayTax;
             }
 
             /// <summary>
@@ -459,6 +572,12 @@ namespace LD58.Inputs
                 @Shoot.started -= instance.OnShoot;
                 @Shoot.performed -= instance.OnShoot;
                 @Shoot.canceled -= instance.OnShoot;
+                @SwitchFruit.started -= instance.OnSwitchFruit;
+                @SwitchFruit.performed -= instance.OnSwitchFruit;
+                @SwitchFruit.canceled -= instance.OnSwitchFruit;
+                @PayTax.started -= instance.OnPayTax;
+                @PayTax.performed -= instance.OnPayTax;
+                @PayTax.canceled -= instance.OnPayTax;
             }
 
             /// <summary>
@@ -546,6 +665,20 @@ namespace LD58.Inputs
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnShoot(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "SwitchFruit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnSwitchFruit(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "PayTax" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPayTax(InputAction.CallbackContext context);
         }
     }
 }
