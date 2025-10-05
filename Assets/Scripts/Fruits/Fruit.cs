@@ -16,6 +16,7 @@ namespace LD58.Fruits
 
         private FruitData _data;
         private int _health;
+        private int _lastDamageFrame;
 
         public bool IsMoving => _rigidbody.bodyType == RigidbodyType2D.Dynamic;
         public float GravityScale => _rigidbody.gravityScale;
@@ -77,11 +78,14 @@ namespace LD58.Fruits
 
         private void OnHit(Fruit fruit)
         {
-            if (IsMoving)
+            if (IsMoving
+                || _lastDamageFrame == Time.frameCount
+                )
             {
                 return;
             }
 
+            _lastDamageFrame = Time.frameCount;
             _health -= fruit.Data.Damage;
 
             if (_health <= 0)
