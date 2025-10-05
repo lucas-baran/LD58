@@ -13,6 +13,7 @@ namespace LD58.Fruits
         [SerializeField] private int _damage = 1;
         [SerializeField] private float _spriteSize = 0.3f;
         [SerializeField] private float _colliderSize = 0.3f;
+        [SerializeField] private int _sortingOrder = 0;
         [SerializeField] private Sprite _sprite;
         [SerializeField] private Color _color = Color.white;
         [SerializeField] private bool _hasCollisions;
@@ -26,6 +27,7 @@ namespace LD58.Fruits
         public int Damage => _damage;
         public float SpriteSize => _spriteSize;
         public float ColliderSize => _colliderSize;
+        public int SortingOrder => _sortingOrder;
         public Sprite Sprite => _sprite;
         public Color Color => _color;
         public bool HasCollisions => _hasCollisions;

@@ -39,6 +39,7 @@ namespace LD58.Fruits
                     _colliderSizeTransform.localScale = new Vector3(_data.ColliderSize, _data.ColliderSize, _data.ColliderSize);
                     _renderer.sprite = _data.Sprite;
                     _renderer.color = _data.Color;
+                    SortingOrder = _data.SortingOrder;
                     _collider.enabled = _data.HasCollisions;
                 }
             }

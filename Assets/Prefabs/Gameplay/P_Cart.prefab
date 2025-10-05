@@ -776,6 +776,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 57c0e9c7570dfbc4aa0421e812748996, type: 2}
   _fruitParent: {fileID: 5624464375368635097}
   _selectedFruitParent: {fileID: 7685782314490691340}
+  _fruitToShootSortingOrder: 0
   _selectedFruitSortingOrder: 10
 --- !u!212 &9180215665776650662
 SpriteRenderer:

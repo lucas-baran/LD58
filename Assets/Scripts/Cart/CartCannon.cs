@@ -11,6 +11,7 @@ namespace LD58.Cart
         [SerializeField] private CartCannonData _data;
         [SerializeField] private Transform _fruitParent;
         [SerializeField] private Transform _selectedFruitParent;
+        [SerializeField] private int _fruitToShootSortingOrder = 0;
         [SerializeField] private int _selectedFruitSortingOrder = 10;
 
         private Fruit _fruitToShoot;
@@ -120,6 +121,7 @@ namespace LD58.Cart
             HideFruitToShoot();
             FruitData fruit_data = _fruitsInInventory[_fruitIndex];
             DisplayFruit(ref _fruitToShoot, fruit_data, _fruitParent);
+            _fruitToShoot.SortingOrder = _fruitToShootSortingOrder;
             DisplayFruit(ref _selectedFruit, fruit_data, _selectedFruitParent);
             _selectedFruit.SortingOrder = _selectedFruitSortingOrder;
         }
