@@ -677,7 +677,7 @@ MonoBehaviour:
     _quote: That's surprising...
   _loseText:
     _main: You failed to pay your taxes.
-    _quote: You will die likely be executed for your sins.
+    _quote: You will likely be executed for your incompetence.
   _mainText: {fileID: 7175888270688466470}
   _quoteText: {fileID: 8459618013520694659}
   _replayButton: {fileID: 5970683688747517597}
