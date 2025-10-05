@@ -6,6 +6,7 @@ namespace LD58.Fruits
     public class Fruit : MonoBehaviour, IFruitCollisionTarget
     {
         [SerializeField] private int _startingGrowStep = 0;
+        [SerializeField] private int _sortingOrder = 0;
         [SerializeField] private FruitData _startingData = null;
         [SerializeField] private Transform _spriteSizeTransform = null;
         [SerializeField] private Transform _colliderSizeTransform = null;
@@ -18,6 +19,11 @@ namespace LD58.Fruits
 
         public bool IsMoving => _rigidbody.bodyType == RigidbodyType2D.Dynamic;
         public float GravityScale => _rigidbody.gravityScale;
+        public int SortingOrder
+        {
+            get => _renderer.sortingOrder;
+            set => _renderer.sortingOrder = value;
+        }
         public FruitData Data
         {
             get => _data;
@@ -32,6 +38,7 @@ namespace LD58.Fruits
                     _colliderSizeTransform.localScale = new Vector3(_data.ColliderSize, _data.ColliderSize, _data.ColliderSize);
                     _renderer.sprite = _data.Sprite;
                     _renderer.color = _data.Color;
+                    SortingOrder = _sortingOrder;
                     _collider.enabled = _data.HasCollisions;
                 }
             }

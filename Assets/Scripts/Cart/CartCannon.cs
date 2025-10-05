@@ -10,8 +10,11 @@ namespace LD58.Cart
     {
         [SerializeField] private CartCannonData _data;
         [SerializeField] private Transform _fruitParent;
+        [SerializeField] private Transform _selectedFruitParent;
+        [SerializeField] private int _selectedFruitSortingOrder = 10;
 
         private Fruit _fruitToShoot;
+        private Fruit _selectedFruit;
         private bool _canShoot;
         private int _fruitIndex;
         private readonly IComparer<FruitData> _fruitShootValueComparer = new FruitShootValueComparer();
@@ -114,17 +117,19 @@ namespace LD58.Cart
 
         private void RefreshFruitToShoot()
         {
-            if (_fruitToShoot != null)
-            {
-                FruitGrower.Instance.Destroy(_fruitToShoot);
-                _fruitToShoot = null;
-            }
-
+            HideFruitToShoot();
             FruitData fruit_data = _fruitsInInventory[_fruitIndex];
-            _fruitToShoot = FruitGrower.Instance.GetFruit(fruit_data);
-            _fruitToShoot.transform.localScale = Vector3.one;
-            _fruitToShoot.transform.SetParent(_fruitParent, worldPositionStays: true);
-            _fruitToShoot.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            DisplayFruit(ref _fruitToShoot, fruit_data, _fruitParent);
+            DisplayFruit(ref _selectedFruit, fruit_data, _selectedFruitParent);
+            _selectedFruit.SortingOrder = _selectedFruitSortingOrder;
+        }
+
+        private void DisplayFruit(ref Fruit fruit, FruitData fruit_data, Transform parent)
+        {
+            fruit = FruitGrower.Instance.GetFruit(fruit_data);
+            fruit.transform.localScale = Vector3.one;
+            fruit.transform.SetParent(parent, worldPositionStays: true);
+            fruit.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
         private void HideFruitToShoot()
@@ -133,6 +138,12 @@ namespace LD58.Cart
             {
                 FruitGrower.Instance.Destroy(_fruitToShoot);
                 _fruitToShoot = null;
+            }
+
+            if (_selectedFruit != null)
+            {
+                FruitGrower.Instance.Destroy(_selectedFruit);
+                _selectedFruit = null;
             }
         }
     }
