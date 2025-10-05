@@ -419,7 +419,7 @@ namespace LD58.Inputs
                 {
                     ""name"": """",
                     ""id"": ""3a408a79-6dd7-4de9-92c8-2ee57fbafbaf"",
-                    ""path"": ""<XInputController>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -430,7 +430,7 @@ namespace LD58.Inputs
                 {
                     ""name"": """",
                     ""id"": ""1f6114ac-599f-471a-8686-5b16b08a6795"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -441,7 +441,7 @@ namespace LD58.Inputs
                 {
                     ""name"": """",
                     ""id"": ""cf68e0e5-ba2e-4b1c-bba3-a643d567316e"",
-                    ""path"": ""<XInputController>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
