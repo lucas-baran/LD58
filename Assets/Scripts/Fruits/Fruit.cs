@@ -38,7 +38,6 @@ namespace LD58.Fruits
                     _colliderSizeTransform.localScale = new Vector3(_data.ColliderSize, _data.ColliderSize, _data.ColliderSize);
                     _renderer.sprite = _data.Sprite;
                     _renderer.color = _data.Color;
-                    SortingOrder = _sortingOrder;
                     _collider.enabled = _data.HasCollisions;
                 }
             }
@@ -48,9 +47,12 @@ namespace LD58.Fruits
 
         public void Initialize(FruitData data)
         {
+            transform.parent = null;
+            transform.localScale = Vector3.one;
             _rigidbody.angularVelocity = 0f;
             _rigidbody.linearVelocity = Vector2.zero;
             _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            SortingOrder = _sortingOrder;
             Data = data;
         }
 
