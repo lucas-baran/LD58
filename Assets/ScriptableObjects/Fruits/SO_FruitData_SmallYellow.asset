@@ -19,6 +19,7 @@ MonoBehaviour:
   _damage: 1
   _spriteSize: 1
   _colliderSize: 0.3
+  _sortingOrder: -11
   _sprite: {fileID: 21300000, guid: 350e214dc9f4bc54b8c1e5ba05e19058, type: 3}
   _color: {r: 0.8962264, g: 0.86416155, b: 0.46079564, a: 1}
   _hasCollisions: 0
