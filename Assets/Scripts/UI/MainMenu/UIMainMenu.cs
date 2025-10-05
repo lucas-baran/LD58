@@ -14,6 +14,7 @@ namespace LD58.UI
         [SerializeField] private Button _previousScenarioButton;
         [SerializeField] private Button _nextScenarioButton;
         [SerializeField] private Button _launchScenarioButton;
+        [SerializeField] private Button _quitGameButton;
         [SerializeField] private ScenarioData _defaultScenarioData;
         [SerializeField] private List<ScenarioData> _scenarioDatas;
 
@@ -53,6 +54,15 @@ namespace LD58.UI
             GameManager.Instance.LoadSceneAsync(_scenarioDatas[_currentScenarioIndex].SceneReference).Forget();
         }
 
+        private void QuitGameButton_OnClick()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.ExitPlaymode();
+#else
+            Application.Quit();
+#endif
+        }
+
         private void TriggerNavigation_performed(InputAction.CallbackContext context)
         {
             float navigation = context.ReadValue<float>();
@@ -72,6 +82,11 @@ namespace LD58.UI
             LaunchScenarioButton_OnClick();
         }
 
+        private void Cancel_performed(InputAction.CallbackContext context)
+        {
+            QuitGameButton_OnClick();
+        }
+
         private void Start()
         {
             _currentScenarioIndex = _scenarioDatas.IndexOf(_defaultScenarioData);
@@ -79,10 +94,12 @@ namespace LD58.UI
 
             InputManager.Instance.UI.TriggerNavigation.performed += TriggerNavigation_performed;
             InputManager.Instance.UI.Submit.performed += Submit_performed;
+            InputManager.Instance.UI.Cancel.performed += Cancel_performed;
 
             _previousScenarioButton.onClick.AddListener(PreviousScenarioButton_OnClick);
             _nextScenarioButton.onClick.AddListener(NextScenarioButton_OnClick);
             _launchScenarioButton.onClick.AddListener(LaunchScenarioButton_OnClick);
+            _quitGameButton.onClick.AddListener(QuitGameButton_OnClick);
         }
 
         private void OnDestroy()
@@ -91,11 +108,13 @@ namespace LD58.UI
             {
                 InputManager.Instance.UI.TriggerNavigation.performed -= TriggerNavigation_performed;
                 InputManager.Instance.UI.Submit.performed -= Submit_performed;
+                InputManager.Instance.UI.Cancel.performed -= Cancel_performed;
             }
 
             _previousScenarioButton.onClick.RemoveListener(PreviousScenarioButton_OnClick);
             _nextScenarioButton.onClick.RemoveListener(NextScenarioButton_OnClick);
             _launchScenarioButton.onClick.RemoveListener(LaunchScenarioButton_OnClick);
+            _quitGameButton.onClick.RemoveListener(QuitGameButton_OnClick);
         }
     }
 }
