@@ -1,5 +1,10 @@
+using Cysharp.Threading.Tasks;
+using LD58.Game;
+using LD58.Inputs;
 using LD58.Levels;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace LD58.UI
 {
@@ -7,6 +12,7 @@ namespace LD58.UI
     {
         [SerializeField] private UITaxPanel _taxPanelUI;
         [SerializeField] private UIFruitCostPanel _fruitCostUI;
+        [SerializeField] private Button _quitToMenuButton;
 
         private void RefreshUI()
         {
@@ -38,23 +44,46 @@ namespace LD58.UI
             RefreshUI();
         }
 
+        private void QuitToMenuButton_OnClick()
+        {
+            if (Level.HasInstance && Level.Instance.IsPlaying)
+            {
+                GameManager.Instance.LoadMainMenuSceneAsync().Forget();
+            }
+        }
+
+        private void Cancel_performed(InputAction.CallbackContext context)
+        {
+            QuitToMenuButton_OnClick();
+        }
+
         private void Start()
         {
+            InputManager.Instance.UI.Cancel.performed += Cancel_performed;
             Level.Instance.OnShotCountIncreased += Level_OnShotCountIncreased;
             Level.Instance.OnLose += Level_OnLose;
             Level.Instance.OnTaxPayed += Level_OnTaxPayed;
+
+            _quitToMenuButton.onClick.AddListener(QuitToMenuButton_OnClick);
 
             RefreshUI();
         }
 
         private void OnDestroy()
         {
+            if (InputManager.HasInstance)
+            {
+                InputManager.Instance.UI.Cancel.performed -= Cancel_performed;
+            }
+
             if (Level.HasInstance)
             {
                 Level.Instance.OnShotCountIncreased -= Level_OnShotCountIncreased;
                 Level.Instance.OnLose -= Level_OnLose;
                 Level.Instance.OnTaxPayed -= Level_OnTaxPayed;
             }
+
+            _quitToMenuButton.onClick.RemoveListener(QuitToMenuButton_OnClick);
         }
     }
 }

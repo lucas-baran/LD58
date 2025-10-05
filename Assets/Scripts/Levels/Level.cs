@@ -27,6 +27,7 @@ namespace LD58.Levels
 
         public int RemainingShotCount => _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying - _shotCount;
         public LevelTax CurrentTax => _currentTax;
+        public bool IsPlaying { get; private set; }
 
         public void PayTax()
         {
@@ -77,6 +78,7 @@ namespace LD58.Levels
                 await _intro.PlayAsync(cancellation_token);
             }
 
+            IsPlaying = true;
             _cartControls.SetEnabled(true);
         }
 
@@ -121,6 +123,7 @@ namespace LD58.Levels
 
         private void Lose()
         {
+            IsPlaying = false;
             _cartControls.SetEnabled(false);
             OnLose?.Invoke();
         }
@@ -138,6 +141,7 @@ namespace LD58.Levels
 
         private void Win()
         {
+            IsPlaying = false;
             _cartControls.SetEnabled(false);
             OnWin?.Invoke();
         }
@@ -199,6 +203,7 @@ namespace LD58.Levels
 
             FruitGrower.Instance.SpawnFruits(_data);
             _cartControls.SetEnabled(false);
+            IsPlaying = false;
 
             PlayIntroAsync(destroyCancellationToken).Forget();
         }
