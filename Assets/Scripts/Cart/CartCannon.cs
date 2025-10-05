@@ -76,7 +76,7 @@ namespace LD58.Cart
 
             _fruitIndex--;
 
-            if (_fruitIndex < _fruitsInInventory.Count)
+            if (_fruitIndex < 0)
             {
                 _fruitIndex = _fruitsInInventory.Count - 1;
             }
