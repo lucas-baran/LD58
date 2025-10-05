@@ -77,7 +77,7 @@ namespace LD58.Levels
                 await _intro.PlayAsync(cancellation_token);
             }
 
-            _cartControls.Cannon.CanShoot = true;
+            _cartControls.SetEnabled(true);
         }
 
         private async UniTaskVoid PrepareNextShotAsync(CancellationToken cancellation_token)
@@ -198,19 +198,19 @@ namespace LD58.Levels
             InputManager.Instance.Player.PayTax.performed += PayTax_performed;
 
             FruitGrower.Instance.SpawnFruits(_data);
-            _cartControls.Cannon.CanShoot = false;
+            _cartControls.SetEnabled(false);
 
             PlayIntroAsync(destroyCancellationToken).Forget();
         }
 
         private void OnDestroy()
         {
-            _cartControls.Cannon.OnShot -= CartCannon_OnShot;
-
             if (InputManager.HasInstance)
             {
                 InputManager.Instance.Player.PayTax.performed -= PayTax_performed;
             }
+
+            _cartControls.Cannon.OnShot -= CartCannon_OnShot;
         }
     }
 }
