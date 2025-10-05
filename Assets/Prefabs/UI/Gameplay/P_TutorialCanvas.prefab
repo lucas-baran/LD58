@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129bd39affbfb7040a2bb26c68d41c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.UI.UITutorialPanel
-  _delayBeforeSubmit: 0.5
+  _delayBeforeSubmit: 0.2
   _submitButton: {fileID: 4044257434551048499}
   _maskObjects:
   - {fileID: 2005797153386635778}
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129bd39affbfb7040a2bb26c68d41c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.UI.UITutorialPanel
-  _delayBeforeSubmit: 0.5
+  _delayBeforeSubmit: 0.2
   _submitButton: {fileID: 8753079567856238402}
   _maskObjects: []
 --- !u!1 &6012780392649562249
@@ -1919,7 +1919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129bd39affbfb7040a2bb26c68d41c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.UI.UITutorialPanel
-  _delayBeforeSubmit: 0.5
+  _delayBeforeSubmit: 0.2
   _submitButton: {fileID: 1288224492573312781}
   _maskObjects:
   - {fileID: 390709106889718665}
@@ -2670,7 +2670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129bd39affbfb7040a2bb26c68d41c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.UI.UITutorialPanel
-  _delayBeforeSubmit: 0.5
+  _delayBeforeSubmit: 0.2
   _submitButton: {fileID: 8753079567856238402}
   _maskObjects:
   - {fileID: 8236893723820189609}
@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129bd39affbfb7040a2bb26c68d41c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.UI.UITutorialPanel
-  _delayBeforeSubmit: 0.5
+  _delayBeforeSubmit: 0.2
   _submitButton: {fileID: 8753079567856238402}
   _maskObjects:
   - {fileID: 1412582562912836278}
