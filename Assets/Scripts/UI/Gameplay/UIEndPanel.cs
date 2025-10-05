@@ -19,6 +19,8 @@ namespace LD58.UI
         [SerializeField] private Button _replayButton;
         [SerializeField] private Button _quitToMenuButton;
 
+        public bool IsActive => gameObject.activeSelf;
+
         private void Show(EndText end_text)
         {
             gameObject.SetActive(true);
@@ -38,12 +40,18 @@ namespace LD58.UI
 
         private void ReplayButton_OnClick()
         {
-            GameManager.Instance.ReloadCurrentSceneAsync().Forget();
+            if (IsActive)
+            {
+                GameManager.Instance.ReloadCurrentSceneAsync().Forget();
+            }
         }
 
         private void QuitToMenuButton_OnClick()
         {
-            GameManager.Instance.LoadMainMenuSceneAsync().Forget();
+            if (IsActive)
+            {
+                GameManager.Instance.LoadMainMenuSceneAsync().Forget();
+            }
         }
 
         private void Submit_performed(InputAction.CallbackContext context)
