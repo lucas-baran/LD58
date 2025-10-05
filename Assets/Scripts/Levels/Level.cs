@@ -14,6 +14,7 @@ namespace LD58.Levels
     public class Level : Singleton<Level>
     {
         [SerializeField] private LevelData _data;
+        [SerializeField] private LevelIntro _intro;
 
         private CartControls _cartControls;
         private int _shotCount = 0;
@@ -67,6 +68,16 @@ namespace LD58.Levels
             }
 
             return true;
+        }
+
+        private async UniTaskVoid PlayIntroAsync(CancellationToken cancellation_token)
+        {
+            if (_intro != null)
+            {
+                await _intro.PlayAsync(cancellation_token);
+            }
+
+            _cartControls.Cannon.CanShoot = true;
         }
 
         private async UniTaskVoid PrepareNextShotAsync(CancellationToken cancellation_token)
@@ -183,13 +194,13 @@ namespace LD58.Levels
         private void Start()
         {
             _cartControls = FindAnyObjectByType<CartControls>();
-
-            _cartControls.Cannon.CanShoot = true;
             _cartControls.Cannon.OnShot += CartCannon_OnShot;
+            InputManager.Instance.Player.PayTax.performed += PayTax_performed;
 
             FruitGrower.Instance.SpawnFruits(_data);
+            _cartControls.Cannon.CanShoot = false;
 
-            InputManager.Instance.Player.PayTax.performed += PayTax_performed;
+            PlayIntroAsync(destroyCancellationToken).Forget();
         }
 
         private void OnDestroy()
