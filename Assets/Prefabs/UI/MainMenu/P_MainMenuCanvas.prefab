@@ -546,6 +546,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1512718463290291491, guid: 6e03ca0decb66dc499010b8cce5e021f, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4591923054481898163, guid: 6e03ca0decb66dc499010b8cce5e021f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2104.1357
+      objectReference: {fileID: 0}
     - target: {fileID: 5223314215262010131, guid: 6e03ca0decb66dc499010b8cce5e021f, type: 3}
       propertyPath: m_Name
       value: P_ScenarioPanel
