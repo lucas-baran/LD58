@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30e6e133a072972478cb37c754a040b7, type: 3}
-  m_Name: SO_ScenarioData_Level3
+  m_Name: SO_ScenarioData_Level4
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Game.ScenarioData
-  _name: Can your cart handle it? (Mine can)
+  _name: Are these... branches?
   _picture: {fileID: 21300000, guid: fc78e1e7f9c87b045b9a894e9a565b27, type: 3}
   _sceneReference:
-    _sceneName: Scene_Level3
-    _sceneAsset: {fileID: 102900000, guid: e00991b7fed71d04494d145359d7dd83, type: 3}
+    _sceneName: Scene_Level4
+    _sceneAsset: {fileID: 102900000, guid: 7d2a4633452c68345a772569998b492b, type: 3}
