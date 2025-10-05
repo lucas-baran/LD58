@@ -16,3 +16,4 @@ MonoBehaviour:
   _levelBoundsPadding: 2.5
   _aimSpeed: 50
   _maxAimAngle: 50
+  _switchFruitTime: 0.3
