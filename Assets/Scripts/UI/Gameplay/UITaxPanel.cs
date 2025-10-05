@@ -22,7 +22,7 @@ namespace LD58.UI
 
         private void PayTaxesButton_OnClick()
         {
-            Level.Instance.PayTaxes();
+            Level.Instance.PayTax();
         }
 
         private void Start()

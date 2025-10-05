@@ -1,11 +1,13 @@
 using Cysharp.Threading.Tasks;
 using LD58.Cart;
 using LD58.Fruits;
+using LD58.Inputs;
 using LD58.Players;
 using LD58.Taxes;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace LD58.Levels
 {
@@ -25,7 +27,7 @@ namespace LD58.Levels
         public int RemainingShotCount => _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying - _shotCount;
         public LevelTax CurrentTax => _currentTax;
 
-        public void PayTaxes()
+        public void PayTax()
         {
             if (!CanPayTax())
             {
@@ -90,7 +92,7 @@ namespace LD58.Levels
                 // Automatically pay tax if player has no shot left but can pay
                 if (TaxIsDue())
                 {
-                    PayTaxes();
+                    PayTax();
                 }
 
                 UpdateCurrentTax();
@@ -167,6 +169,11 @@ namespace LD58.Levels
             PrepareNextShotAsync(destroyCancellationToken).Forget();
         }
 
+        private void PayTax_performed(InputAction.CallbackContext context)
+        {
+            PayTax();
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -181,11 +188,18 @@ namespace LD58.Levels
             _cartControls.Cannon.OnShot += CartCannon_OnShot;
 
             FruitGrower.Instance.SpawnFruits(_data);
+
+            InputManager.Instance.Player.PayTax.performed += PayTax_performed;
         }
 
         private void OnDestroy()
         {
             _cartControls.Cannon.OnShot -= CartCannon_OnShot;
+
+            if (InputManager.HasInstance)
+            {
+                InputManager.Instance.Player.PayTax.performed -= PayTax_performed;
+            }
         }
     }
 }
