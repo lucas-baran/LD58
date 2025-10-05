@@ -50,7 +50,7 @@ namespace LD58.Cart
 
             RegeneratePositions();
             _lineRenderer.enabled = true;
-            _lineRenderer.widthMultiplier = _cannon.CurrentFruit.Data.Size;
+            _lineRenderer.widthMultiplier = _cannon.CurrentFruit.Data.ColliderSize;
             _lineRenderer.SetPositions(_positions);
         }
 
