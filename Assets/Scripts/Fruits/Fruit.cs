@@ -77,17 +77,15 @@ namespace LD58.Fruits
             }
         }
 
-        private void OnHit(Fruit fruit)
+        public void Damage(int damage)
         {
-            if (IsMoving
-                || _lastDamageFrame == Time.frameCount
-                )
+            if (IsMoving || _lastDamageFrame == Time.frameCount || damage <= 0)
             {
                 return;
             }
 
             _lastDamageFrame = Time.frameCount;
-            _health -= fruit.Data.Damage;
+            _health -= damage;
 
             if (_health <= 0)
             {
@@ -98,7 +96,7 @@ namespace LD58.Fruits
 
         void IFruitCollisionTarget.OnCollision(Fruit other_fruit)
         {
-            other_fruit.OnHit(this);
+            other_fruit.Damage(_data.Damage);
         }
 
         private void Awake()
