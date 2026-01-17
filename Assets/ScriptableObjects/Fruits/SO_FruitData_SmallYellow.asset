@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_FruitData_SmallYellow
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Fruits.FruitData
   _name: Small yellow fruit
-  _value: 0
+  _currencyValue: 0
   _shootValue: 1
   _health: 1
   _damage: 1

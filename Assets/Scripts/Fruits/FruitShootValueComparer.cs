@@ -10,7 +10,7 @@ namespace LD58.Fruits
 
             if (shoot_value_comparison == 0)
             {
-                return right_fruit.Value.CompareTo(left_fruit.Value);
+                return right_fruit.CurrencyValue.CompareTo(left_fruit.CurrencyValue);
             }
 
             return shoot_value_comparison;
