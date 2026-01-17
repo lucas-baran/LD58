@@ -155,6 +155,11 @@ namespace LD58.Fruits
 
             private void Fruit_OnDetach()
             {
+                if (_fruit.Data.OnDetachEffect != null)
+                {
+                    _fruit.Data.OnDetachEffect.Execute(_fruit);
+                }
+
                 Fruit = null;
             }
         }
