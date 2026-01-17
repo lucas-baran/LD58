@@ -11,6 +11,7 @@ namespace LD58.Fruits
         [SerializeField] private int _shootValue = 1;
         [SerializeField] private int _health = 1;
         [SerializeField] private int _damage = 1;
+        [SerializeField] private FruitEffectData _onDetachEffect;
         [SerializeField] private float _spriteSize = 0.3f;
         [SerializeField] private float _colliderSize = 0.3f;
         [SerializeField] private int _sortingOrder = 0;
@@ -25,6 +26,7 @@ namespace LD58.Fruits
         public int ShootValue => _shootValue;
         public int Health => _health;
         public int Damage => _damage;
+        public FruitEffectData OnDetachEffect => _onDetachEffect;
         public float SpriteSize => _spriteSize;
         public float ColliderSize => _colliderSize;
         public int SortingOrder => _sortingOrder;
