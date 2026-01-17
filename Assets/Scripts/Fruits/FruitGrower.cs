@@ -17,6 +17,8 @@ namespace LD58.Fruits
 
         private Camera _camera;
 
+        public IReadOnlyList<Fruit> ActiveFruits => _activeFruits;
+
         public Fruit GetFruit(FruitData fruit_data)
         {
             if (!_fruitQueue.TryDequeue(out Fruit fruit))
