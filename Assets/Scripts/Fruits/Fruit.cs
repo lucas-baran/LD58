@@ -45,7 +45,7 @@ namespace LD58.Fruits
             }
         }
 
-        public event UnityAction OnFall = null;
+        public event UnityAction OnDetach = null;
 
         public void Initialize(FruitData data)
         {
@@ -92,7 +92,7 @@ namespace LD58.Fruits
             if (_health <= 0)
             {
                 _rigidbody.bodyType = RigidbodyType2D.Dynamic;
-                OnFall?.Invoke();
+                OnDetach?.Invoke();
             }
         }
 

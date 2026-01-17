@@ -135,14 +135,14 @@ namespace LD58.Fruits
 
                     if (_fruit != null)
                     {
-                        _fruit.OnFall -= Fruit_OnFall;
+                        _fruit.OnDetach -= Fruit_OnDetach;
                     }
 
                     _fruit = value;
 
                     if (_fruit != null)
                     {
-                        _fruit.OnFall += Fruit_OnFall;
+                        _fruit.OnDetach += Fruit_OnDetach;
                     }
                 }
             }
@@ -153,7 +153,7 @@ namespace LD58.Fruits
                 Fruit = fruit;
             }
 
-            private void Fruit_OnFall()
+            private void Fruit_OnDetach()
             {
                 Fruit = null;
             }
