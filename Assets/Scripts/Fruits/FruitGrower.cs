@@ -120,7 +120,7 @@ namespace LD58.Fruits
 
         private sealed class GrowSpot
         {
-            public Fruit _fruit;
+            private Fruit _fruit;
 
             public readonly Vector3 Position;
             public Fruit Fruit
