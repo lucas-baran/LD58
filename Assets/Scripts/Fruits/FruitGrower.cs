@@ -10,6 +10,7 @@ namespace LD58.Fruits
         [SerializeField] private List<FruitData> _startingFruits = new();
         [SerializeField] private float _cameraPadding = 1f;
         [SerializeField] private Fruit _fruitPrefab;
+        [SerializeField] private FruitEffectManager _fruitEffectManager;
 
         private readonly Queue<Fruit> _fruitQueue = new();
         private readonly List<Fruit> _activeFruits = new();
@@ -77,7 +78,7 @@ namespace LD58.Fruits
                 LevelData.FruitPosition fruit_position = level_data.StartingFruits[i];
                 Fruit fruit = GetFruit(fruit_position.FruitData);
                 fruit.transform.position = new Vector3(fruit_position.Position.x, fruit_position.Position.y, fruit.transform.position.z);
-                _growSpots.Add(new GrowSpot(fruit));
+                _growSpots.Add(new GrowSpot(fruit, _fruitEffectManager));
             }
         }
 
@@ -120,6 +121,7 @@ namespace LD58.Fruits
 
         private sealed class GrowSpot
         {
+            private readonly FruitEffectManager _fruitEffectManager;
             private Fruit _fruit;
 
             public readonly Vector3 Position;
@@ -147,17 +149,18 @@ namespace LD58.Fruits
                 }
             }
 
-            public GrowSpot(Fruit fruit)
+            public GrowSpot(Fruit fruit, FruitEffectManager fruit_effect_manager)
             {
                 Position = fruit.transform.position;
                 Fruit = fruit;
+                _fruitEffectManager = fruit_effect_manager;
             }
 
             private void Fruit_OnDetach()
             {
-                if (_fruit.Data.OnDetachEffect != null)
+                if (_fruit.Data.OnDetachEffectPrefab != null)
                 {
-                    _fruit.Data.OnDetachEffect.Execute(_fruit);
+                    _fruitEffectManager.ExecuteEffect(_fruit, _fruit.Data.OnDetachEffectPrefab);
                 }
 
                 Fruit = null;
