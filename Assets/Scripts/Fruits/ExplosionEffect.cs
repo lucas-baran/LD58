@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace LD58.Fruits
 {
     public sealed class ExplosionEffect : FruitEffect
     {
         [SerializeField] private ExplosionEffectData _data;
+        [SerializeField] private VisualEffect _vfx;
+        [SerializeField] private VFXGraphicsBufferProperties _vfxProperties;
+
+        private VFXGraphicsBuffer<Vector4> _positionBuffer;
 
         public override void Execute(Fruit fruit)
         {
@@ -29,6 +34,18 @@ namespace LD58.Fruits
                     active_fruit.Damage(_data.Damage);
                 }
             }
+
+            _positionBuffer.AddData(new Vector4(center.x, center.y, center.z, _data.Radius));
+        }
+
+        private void Awake()
+        {
+            _positionBuffer = new VFXGraphicsBuffer<Vector4>(_vfx, capacity: 32, stride: 16, _vfxProperties, auto_resize: true, subsystem_type: typeof(ExplosionEffect));
+        }
+
+        private void OnDestroy()
+        {
+            _positionBuffer.Dispose();
         }
     }
 }
