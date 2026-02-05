@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6380316670981279860}
   - component: {fileID: 9135842215202603814}
   - component: {fileID: 5342000259448075758}
+  - component: {fileID: 2263581318998805463}
   m_Layer: 0
   m_Name: P_Player
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Players.Player
   _dontDestroyOnLoad: 0
   _inventory: {fileID: 5342000259448075758}
+  _fruitDeck: {fileID: 2263581318998805463}
 --- !u!114 &5342000259448075758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,3 +64,16 @@ MonoBehaviour:
   _startingFruits:
   - _fruitData: {fileID: 11400000, guid: 37dc978027aeba343892dd54c2b80afd, type: 2}
     _count: 10
+--- !u!114 &2263581318998805463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7774822291373443561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7278ea847580104409145b19b4aad689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LD58.Fruits.FruitDeck
+  _startingDeck: {fileID: 11400000, guid: efd5010bcda281e429c383d7ad6d7a33, type: 2}
