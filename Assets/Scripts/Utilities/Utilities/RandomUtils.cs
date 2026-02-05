@@ -7,11 +7,10 @@ namespace LD58
     public static class RandomUtils
     {
         /// <summary>
-        /// Selects an item in a successive manner, each candidate item has the same chance of being selected.<br/>
-        /// This function can be called multiple times in a row, it will update the necessary variables to work as expected.<br/>
-        /// It can be used to select a random item that satisfies a predicate in any type of collection (e.g. <see cref="GetRandomItem"/>) or algorithm.
+        /// When called multiple times successively, selects an random item and update the necessary variables for the next call, each item will have the same chance of being selected.<br/>
+        /// It can be used to select a random item that satisfies a predicate in any type of collection (e.g. <see cref="GetRandomItem"/>).
         /// </summary>
-        /// <param name="random_value">A value starting inside [0,1]<br />Giving the same starting value will produce the same result.</param>
+        /// <param name="random_value">A value starting inside [0,1]<br/>Giving the same starting value will produce the same result.</param>
         /// <param name="selection_index">The index of selection, this ensures that the chances to select each item are the same.</param>
         public static void SelectRandomItem<TItem>(ref float random_value, ref int selection_index, ref bool has_first_item, ref TItem selected_item, TItem candidate_item)
         {
