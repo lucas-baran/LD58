@@ -6,16 +6,16 @@ namespace LD58.Levels
     [CustomEditor(typeof(LevelData))]
     public sealed class LevelDataEditor : Editor
     {
-        private SerializedProperty _startingFruitsProperty;
+        private SerializedProperty _growSpotsProperty;
 
         private void SceneGUI(SceneView scene_view)
         {
             bool has_changed = false;
             serializedObject.Update();
 
-            for (int i = 0; i < _startingFruitsProperty.arraySize; i++)
+            for (int i = 0; i < _growSpotsProperty.arraySize; i++)
             {
-                SerializedProperty starting_fruit_property = _startingFruitsProperty.GetArrayElementAtIndex(i);
+                SerializedProperty starting_fruit_property = _growSpotsProperty.GetArrayElementAtIndex(i);
                 SerializedProperty position_property = starting_fruit_property.FindPropertyRelative("_position");
 
                 Vector2 old_position = position_property.vector2Value;
@@ -32,7 +32,7 @@ namespace LD58.Levels
 
         private void OnEnable()
         {
-            _startingFruitsProperty = serializedObject.FindProperty("_startingFruits");
+            _growSpotsProperty = serializedObject.FindProperty("_growSpots");
             SceneView.duringSceneGui += SceneGUI;
         }
 

@@ -128,9 +128,9 @@ namespace LD58.Fruits
 
         private void CreateGrowSpots(LevelData level_data)
         {
-            for (int spot_index = 0; spot_index < level_data.StartingFruits.Count; spot_index++)
+            for (int spot_index = 0; spot_index < level_data.GrowSpots.Count; spot_index++)
             {
-                LevelData.FruitPosition spot_info = level_data.StartingFruits[spot_index];
+                LevelData.GrowSpot spot_info = level_data.GrowSpots[spot_index];
                 Vector3 position = new(spot_info.Position.x, spot_info.Position.y, 0f);
                 _growSpots.Add(new GrowSpot(position, _fruitEffectManager, _fruitDeck));
             }

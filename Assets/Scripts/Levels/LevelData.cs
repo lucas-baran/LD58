@@ -1,4 +1,3 @@
-using LD58.Fruits;
 using LD58.Taxes;
 using System;
 using System.Collections.Generic;
@@ -10,19 +9,17 @@ namespace LD58.Levels
     public class LevelData : ScriptableObject
     {
         [SerializeField] private List<LevelTax> _taxes = new();
-        [SerializeField] private List<FruitPosition> _startingFruits = new();
+        [SerializeField] private List<GrowSpot> _growSpots = new();
 
         public IReadOnlyList<LevelTax> Taxes => _taxes;
-        public IReadOnlyList<FruitPosition> StartingFruits => _startingFruits;
+        public IReadOnlyList<GrowSpot> GrowSpots => _growSpots;
 
         [Serializable]
-        public sealed class FruitPosition
+        public sealed class GrowSpot
         {
             [SerializeField] private Vector2 _position;
-            [SerializeField] private FruitData _fruitData;
 
             public Vector2 Position => _position;
-            public FruitData FruitData => _fruitData;
         }
     }
 }
