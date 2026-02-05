@@ -62,7 +62,7 @@ namespace LD58.Fruits
 
         public void AddData(T data)
         {
-            if (_data.Length < MaxCapacity)
+            if (!_disposed && _data.Length < MaxCapacity)
             {
                 _data.Add(data);
             }
@@ -70,7 +70,7 @@ namespace LD58.Fruits
 
         private void SendEvent()
         {
-            if (_data.Length == 0)
+            if (_disposed || _data.Length == 0)
             {
                 return;
             }
