@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c358bfa31ce2241a3c69e9601318c1, type: 3}
+  m_Name: SO_FruitDeck
+  m_EditorClassIdentifier: Assembly-CSharp::LD58.Fruits.FruitDeckSO
+  _fruits:
+  - {fileID: 11400000, guid: a1aa27abe0b3e484c98a61821c23ff1e, type: 2}
+  - {fileID: 11400000, guid: a1aa27abe0b3e484c98a61821c23ff1e, type: 2}
