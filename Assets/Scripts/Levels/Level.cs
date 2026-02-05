@@ -201,7 +201,7 @@ namespace LD58.Levels
             _cartControls.Cannon.OnShot += CartCannon_OnShot;
             InputManager.Instance.Player.PayTax.performed += PayTax_performed;
 
-            FruitGrower.Instance.SpawnFruits(_data);
+            FruitGrower.Instance.Initialize(_data);
             _cartControls.SetEnabled(false);
             IsPlaying = false;
 

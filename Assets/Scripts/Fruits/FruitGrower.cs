@@ -1,6 +1,8 @@
 using LD58.Levels;
+using LD58.Players;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Collections;
 using UnityEngine;
 
 namespace LD58.Fruits
@@ -16,6 +18,7 @@ namespace LD58.Fruits
         private readonly List<Fruit> _activeFruits = new();
         private readonly List<GrowSpot> _growSpots = new();
 
+        private LevelFruitDeck _fruitDeck;
         private Camera _camera;
 
         public IReadOnlyList<Fruit> ActiveFruits => _activeFruits;
@@ -43,18 +46,51 @@ namespace LD58.Fruits
 
         public void GrowFruits()
         {
-            foreach (GrowSpot grow_spot in _growSpots)
+            GrowFilledSpots(out NativeList<int> free_spots);
+            PlantFruitsFromDeck(ref free_spots);
+            PlantDefaultFruits(ref free_spots);
+            free_spots.Dispose();
+        }
+
+        private void GrowFilledSpots(out NativeList<int> free_spots)
+        {
+            int spot_count = _growSpots.Count;
+            free_spots = new(initialCapacity: spot_count, Allocator.Temp);
+
+            for (int spot_index = 0; spot_index < spot_count; spot_index++)
             {
-                if (grow_spot.Fruit == null)
+                GrowSpot grow_spot = _growSpots[spot_index];
+
+                if (grow_spot.IsFree)
                 {
-                    grow_spot.Fruit = GetFruit(GetRandomStartingFruit());
+                    free_spots.AddNoResize(spot_index);
                 }
                 else
                 {
                     grow_spot.Fruit.Grow();
                 }
+            }
+        }
 
-                grow_spot.Fruit.transform.SetPositionAndRotation(grow_spot.Position, Quaternion.identity);
+        private void PlantFruitsFromDeck(ref NativeList<int> free_spots)
+        {
+            while (free_spots.Length > 0 && _fruitDeck.TryGetRandomFruit(out FruitData fruit_data))
+            {
+                int random_index = Random.Range(0, free_spots.Length);
+                GrowSpot grow_spot = _growSpots[free_spots[random_index]];
+                grow_spot.Fruit = GetFruit(fruit_data);
+                grow_spot.ReturnToDeck = true;
+                free_spots.RemoveAt(random_index);
+            }
+        }
+
+        private void PlantDefaultFruits(ref NativeList<int> free_spots)
+        {
+            foreach (int spot_index in free_spots)
+            {
+                GrowSpot grow_spot = _growSpots[spot_index];
+                grow_spot.Fruit = GetFruit(GetRandomStartingFruit());
+                grow_spot.ReturnToDeck = false;
             }
         }
 
@@ -71,14 +107,32 @@ namespace LD58.Fruits
             return false;
         }
 
-        public void SpawnFruits(LevelData level_data)
+        public void Initialize(LevelData level_data)
         {
-            for (int i = 0; i < level_data.StartingFruits.Count; i++)
+            _fruitDeck = new LevelFruitDeck(Player.Instance.FruitDeck.Fruits);
+            CreateGrowSpots(level_data);
+            GrowFruits();
+            GrowFruitsUntilTheyCanCollide();
+        }
+
+        private void GrowFruitsUntilTheyCanCollide()
+        {
+            foreach (GrowSpot grow_spot in _growSpots)
             {
-                LevelData.FruitPosition fruit_position = level_data.StartingFruits[i];
-                Fruit fruit = GetFruit(fruit_position.FruitData);
-                fruit.transform.position = new Vector3(fruit_position.Position.x, fruit_position.Position.y, fruit.transform.position.z);
-                _growSpots.Add(new GrowSpot(fruit, _fruitEffectManager));
+                if (!grow_spot.Fruit.Data.HasCollisions)
+                {
+                    grow_spot.Fruit.Grow();
+                }
+            }
+        }
+
+        private void CreateGrowSpots(LevelData level_data)
+        {
+            for (int spot_index = 0; spot_index < level_data.StartingFruits.Count; spot_index++)
+            {
+                LevelData.FruitPosition spot_info = level_data.StartingFruits[spot_index];
+                Vector3 position = new(spot_info.Position.x, spot_info.Position.y, 0f);
+                _growSpots.Add(new GrowSpot(position, _fruitEffectManager, _fruitDeck));
             }
         }
 
@@ -122,9 +176,13 @@ namespace LD58.Fruits
         private sealed class GrowSpot
         {
             private readonly FruitEffectManager _fruitEffectManager;
+            private readonly LevelFruitDeck _fruitDeck;
+            private readonly Vector3 _position;
             private Fruit _fruit;
+            private FruitData _initialFruitData;
 
-            public readonly Vector3 Position;
+            public bool ReturnToDeck { get; set; }
+            public bool IsFree => _fruit == null;
             public Fruit Fruit
             {
                 get => _fruit;
@@ -144,20 +202,35 @@ namespace LD58.Fruits
 
                     if (_fruit != null)
                     {
+                        _initialFruitData = _fruit.Data;
+                        SetFruitPosition(value);
                         _fruit.OnDetach += Fruit_OnDetach;
                     }
                 }
             }
 
-            public GrowSpot(Fruit fruit, FruitEffectManager fruit_effect_manager)
+            public GrowSpot(Vector3 position, FruitEffectManager fruit_effect_manager, LevelFruitDeck fruit_deck)
             {
-                Position = fruit.transform.position;
-                Fruit = fruit;
+                _position = position;
                 _fruitEffectManager = fruit_effect_manager;
+                _fruitDeck = fruit_deck;
+            }
+
+            private void SetFruitPosition(Fruit fruit)
+            {
+                Vector3 position = new(_position.x, _position.y, fruit.transform.position.z);
+                fruit.transform.SetPositionAndRotation(position, Quaternion.identity);
             }
 
             private void Fruit_OnDetach()
             {
+                if (ReturnToDeck)
+                {
+                    _fruitDeck.Return(_initialFruitData);
+                    _initialFruitData = null;
+                    ReturnToDeck = false;
+                }
+
                 if (_fruit.Data.OnDetachEffectPrefab != null)
                 {
                     _fruitEffectManager.ExecuteEffect(_fruit, _fruit.Data.OnDetachEffectPrefab);
