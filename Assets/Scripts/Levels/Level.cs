@@ -28,6 +28,7 @@ namespace LD58.Levels
         public int RemainingShotCount => _currentTax.StartsAtShot + _currentTax.ShotCountBeforePaying - _shotCount;
         public LevelTax CurrentTax => _currentTax;
         public bool IsPlaying { get; private set; }
+        public LevelData Data => _data;
 
         public void PayTax()
         {
