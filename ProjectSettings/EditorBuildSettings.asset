@@ -24,5 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_Level4.unity
     guid: 7d2a4633452c68345a772569998b492b
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 8fcd474a36d31024b88265e3c39884d7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
