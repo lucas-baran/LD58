@@ -1,0 +1,18 @@
+{
+    "name": "LucasBaran.Bootstrap.Editor",
+    "rootNamespace": "LucasBaran.Bootstrap",
+    "references": [
+        "GUID:30093f8319b176f45b78e885ee70bcd4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
