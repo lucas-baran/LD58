@@ -18,6 +18,7 @@ namespace LD58.Fruits
         private readonly List<Fruit> _activeFruits = new();
         private readonly List<GrowSpot> _growSpots = new();
 
+        private InstantiateParameters _fruitInstantiateParameters;
         private LevelFruitDeck _fruitDeck;
         private Camera _camera;
 
@@ -27,7 +28,7 @@ namespace LD58.Fruits
         {
             if (!_fruitQueue.TryDequeue(out Fruit fruit))
             {
-                fruit = Instantiate(_fruitPrefab);
+                fruit = Instantiate(_fruitPrefab, _fruitInstantiateParameters);
             }
 
             _activeFruits.Add(fruit);
@@ -166,6 +167,17 @@ namespace LD58.Fruits
                     Destroy(fruit);
                 }
             }
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _fruitInstantiateParameters = new InstantiateParameters()
+            {
+                originalImmutable = true,
+                scene = gameObject.scene,
+            };
         }
 
         private void Start()
