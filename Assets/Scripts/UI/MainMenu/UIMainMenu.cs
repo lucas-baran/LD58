@@ -15,10 +15,9 @@ namespace LD58.UI
         [SerializeField] private Button _nextScenarioButton;
         [SerializeField] private Button _launchScenarioButton;
         [SerializeField] private Button _quitGameButton;
-        [SerializeField] private ScenarioData _defaultScenarioData;
         [SerializeField] private List<ScenarioData> _scenarioDatas;
 
-        private int _currentScenarioIndex;
+        private int _currentScenarioIndex = 0;
 
         private void RefreshScenario()
         {
@@ -89,7 +88,6 @@ namespace LD58.UI
 
         private void Start()
         {
-            _currentScenarioIndex = _scenarioDatas.IndexOf(_defaultScenarioData);
             RefreshScenario();
 
             InputManager.Instance.UI.TriggerNavigation.performed += TriggerNavigation_performed;
