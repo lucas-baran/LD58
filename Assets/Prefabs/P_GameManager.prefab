@@ -125,6 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Game.GameManager
   _dontDestroyOnLoad: 1
-  _mainMenuScene:
-    _sceneName: Scene_MainMenu
-    _sceneAsset: {fileID: 102900000, guid: d20b1e9b7dafa6d4b9d08c09d447885f, type: 3}
+  _mainMenuScenarioGroup: {fileID: 11400000, guid: 7d44dc67592ea0245ba45441a9ad969a, type: 2}
