@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530d47efe8017df4285f7c14ff0d0d14, type: 3}
+  m_Name: SO_BootstrapSettings
+  m_EditorClassIdentifier: LucasBaran.Bootstrap::LucasBaran.Bootstrap.BootstrapSettings
+  _startScenario: {fileID: 11400000, guid: 62dd9d9f5fca47447b3189ce79ac570f, type: 2}
