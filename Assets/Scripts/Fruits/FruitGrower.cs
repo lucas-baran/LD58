@@ -28,6 +28,7 @@ namespace LD58.Fruits
         {
             if (!_fruitQueue.TryDequeue(out Fruit fruit))
             {
+                // TODO instantiate async
                 fruit = Instantiate(_fruitPrefab, _fruitInstantiateParameters);
             }
 
