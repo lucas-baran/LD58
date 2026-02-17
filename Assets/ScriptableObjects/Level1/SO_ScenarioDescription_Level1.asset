@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30e6e133a072972478cb37c754a040b7, type: 3}
-  m_Name: SO_ScenarioData_Level2
+  m_Name: SO_ScenarioDescription_Level1
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Game.ScenarioData
-  _name: Yellow fruits collect
-  _picture: {fileID: 21300000, guid: 5a579a82f206f2e4fae00ac57d98fd14, type: 3}
-  _sceneReference:
-    _sceneName: Scene_Level2
-    _sceneAsset: {fileID: 102900000, guid: 19f501a85e84aa040ada70474eeaea2f, type: 3}
+  _name: The basics
+  _picture: {fileID: 21300000, guid: fc78e1e7f9c87b045b9a894e9a565b27, type: 3}
+  _scenario: {fileID: 11400000, guid: 814f1643047bfe54fa23d28e9db5fd06, type: 2}
