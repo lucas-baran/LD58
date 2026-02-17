@@ -15,7 +15,7 @@ namespace LD58.UI
         [SerializeField] private Button _nextScenarioButton;
         [SerializeField] private Button _launchScenarioButton;
         [SerializeField] private Button _quitGameButton;
-        [SerializeField] private List<ScenarioData> _scenarioDatas;
+        [SerializeField] private List<LevelDescription> _scenarioDatas;
 
         private int _currentScenarioIndex = 0;
 
@@ -50,7 +50,7 @@ namespace LD58.UI
 
         private void LaunchScenarioButton_OnClick()
         {
-            GameManager.Instance.LoadSceneAsync(_scenarioDatas[_currentScenarioIndex].SceneReference).Forget();
+            GameManager.Instance.LoadLevelAsync(_scenarioDatas[_currentScenarioIndex].Scenario).Forget();
         }
 
         private void QuitGameButton_OnClick()

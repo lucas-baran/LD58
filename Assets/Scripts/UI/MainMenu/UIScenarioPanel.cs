@@ -10,7 +10,7 @@ namespace LD58.UI
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private Image _picture;
 
-        public void SetScenarioData(ScenarioData scenario_data)
+        public void SetScenarioData(LevelDescription scenario_data)
         {
             _nameText.text = scenario_data.Name;
             _picture.sprite = scenario_data.Picture;

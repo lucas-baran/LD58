@@ -1,17 +1,17 @@
 using Cysharp.Threading.Tasks;
+using LucasBaran.Bootstrap;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace LD58.Game
 {
     public sealed class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private SceneReference _mainMenuScene;
+        [SerializeField] private ScenarioGroup _mainMenuScenarioGroup;
 
         private bool _isLoading = false;
-        private SceneReference _currentScene = null;
+        private Scenario _currentLevelScenario;
 
-        public async UniTask LoadSceneAsync(SceneReference scene_reference)
+        public async UniTask LoadLevelAsync(Scenario scenario)
         {
             try
             {
@@ -21,9 +21,10 @@ namespace LD58.Game
                 }
 
                 _isLoading = true;
+                _currentLevelScenario = scenario;
 
-                await SceneManager.LoadSceneAsync(scene_reference.SceneName, LoadSceneMode.Single);
-                _currentScene = scene_reference;
+                await ScenarioLoader.Instance.UnloadAllFromGroupAsync(_mainMenuScenarioGroup);
+                await ScenarioLoader.Instance.LoadAsync(scenario);
             }
             finally
             {
@@ -31,19 +32,23 @@ namespace LD58.Game
             }
         }
 
-        public async UniTask ReloadCurrentSceneAsync()
+        public async UniTask ReloadCurrentLevelAsync()
         {
-            await LoadSceneAsync(_currentScene);
+            await ScenarioLoader.Instance.UnloadAllAsync(IsNotMainMenuScenario);
+            await ScenarioLoader.Instance.LoadAsync(_currentLevelScenario);
         }
 
         public async UniTask LoadMainMenuSceneAsync()
         {
-            await LoadSceneAsync(_mainMenuScene);
+            _currentLevelScenario = null;
+
+            await ScenarioLoader.Instance.UnloadAllAsync(IsNotMainMenuScenario);
+            await ScenarioLoader.Instance.LoadFromGroupAsync(_mainMenuScenarioGroup);
         }
 
-        private void Start()
+        private bool IsNotMainMenuScenario(Scenario scenario)
         {
-            LoadMainMenuSceneAsync().Forget();
+            return !_mainMenuScenarioGroup.Scenarios.Contains(scenario);
         }
     }
 }

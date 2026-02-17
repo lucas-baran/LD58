@@ -42,7 +42,7 @@ namespace LD58.UI
         {
             if (IsActive)
             {
-                GameManager.Instance.ReloadCurrentSceneAsync().Forget();
+                GameManager.Instance.ReloadCurrentLevelAsync().Forget();
             }
         }
 
