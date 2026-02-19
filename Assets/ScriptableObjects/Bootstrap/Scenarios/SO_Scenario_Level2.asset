@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734eef7f303adce4c8b21b5668541a82, type: 3}
   m_Name: SO_Scenario_Level2
   m_EditorClassIdentifier: LucasBaran.Bootstrap::LucasBaran.Bootstrap.ScenarioSO
+  _name: Level 2
+  _showInDebugGui: 1
   _dependencies:
   - {fileID: 11400000, guid: 0b7cad558e61f984ea84b3a753679bf1, type: 2}
   _sceneReferences:

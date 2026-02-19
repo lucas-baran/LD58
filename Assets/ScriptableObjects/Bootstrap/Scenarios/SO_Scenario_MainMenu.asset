@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734eef7f303adce4c8b21b5668541a82, type: 3}
   m_Name: SO_Scenario_MainMenu
   m_EditorClassIdentifier: LucasBaran.Bootstrap::LucasBaran.Bootstrap.ScenarioSO
+  _name: Main Menu
+  _showInDebugGui: 1
   _dependencies: []
   _sceneReferences:
   - _activeScene: 1
