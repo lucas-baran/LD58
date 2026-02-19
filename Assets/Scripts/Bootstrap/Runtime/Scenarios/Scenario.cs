@@ -7,9 +7,13 @@ namespace LucasBaran.Bootstrap
     [CreateAssetMenu(fileName = "SO_Scenario", menuName = "Lucas Baran/Bootstrap/Scenario")]
     public sealed class Scenario : ScriptableObject
     {
+        [SerializeField] private string _name;
+        [SerializeField] private bool _showInDebugGui = true;
         [SerializeField] private ScenarioGroup[] _dependencies;
         [SerializeField] private SceneReference[] _sceneReferences;
 
+        public string Name => _name;
+        public bool ShowInDebugGui => _showInDebugGui;
         public IReadOnlyList<ScenarioGroup> Dependencies => _dependencies;
         public IReadOnlyList<SceneReference> SceneReferences => _sceneReferences;
 
