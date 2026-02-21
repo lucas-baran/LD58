@@ -7,22 +7,24 @@ namespace LucasBaran.Bootstrap
     {
         [SerializeField] private BootstrapSettings _settings;
 
-        private void LoadStartScenario()
+        private async UniTaskVoid LoadStartScenario()
         {
+            await ScenarioLoader.Instance.LoadFromGroupsAsync(_settings.StartGroups);
+
 #if UNITY_EDITOR
             if (BootstrapEditorPrefs.TryGetScenarioToLoad(out Scenario scenario))
             {
-                ScenarioLoader.Instance.LoadAsync(scenario).Forget();
+                await ScenarioLoader.Instance.LoadAsync(scenario);
                 return;
             }
 #endif
 
-            ScenarioLoader.Instance.LoadAsync(_settings.StartScenario).Forget();
+            await ScenarioLoader.Instance.LoadAsync(_settings.StartScenario);
         }
 
         private void Start()
         {
-            LoadStartScenario();
+            LoadStartScenario().Forget();
         }
     }
 }
