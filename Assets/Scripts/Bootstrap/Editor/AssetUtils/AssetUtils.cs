@@ -13,5 +13,12 @@ namespace LucasBaran.Bootstrap
             scene_asset = AssetDatabase.LoadAssetByGUID<SceneAsset>(guid);
             return scene_asset != null;
         }
+
+        public static bool TryGetBootstrapScenePath(out string scene_path)
+        {
+            GUID guid = AssetDatabase.FindAssetGUIDs("t:SceneAsset " + BOOTSTRAP_SCENE_NAME).FirstOrDefault();
+            scene_path = AssetDatabase.GUIDToAssetPath(guid);
+            return !string.IsNullOrEmpty(scene_path);
+        }
     }
 }
