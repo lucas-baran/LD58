@@ -9,6 +9,14 @@ namespace LucasBaran.Bootstrap
 
         private void LoadStartScenario()
         {
+#if UNITY_EDITOR
+            if (BootstrapEditorPrefs.TryGetScenarioToLoad(out Scenario scenario))
+            {
+                ScenarioLoader.Instance.LoadAsync(scenario).Forget();
+                return;
+            }
+#endif
+
             ScenarioLoader.Instance.LoadAsync(_settings.StartScenario).Forget();
         }
 
