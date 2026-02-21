@@ -60,6 +60,24 @@ namespace LucasBaran.Bootstrap
             }
         }
 
+        public async UniTask LoadFromGroupsAsync(IEnumerable<ScenarioGroup> scenario_groups)
+        {
+            try
+            {
+                if (scenario_groups == null)
+                {
+                    throw new ArgumentNullException(nameof(scenario_groups));
+                }
+
+                IEnumerable<UniTask> tasks = scenario_groups.Select(scenario_group => LoadFromGroupAsync(scenario_group));
+                await UniTask.WhenAll(tasks);
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception);
+            }
+        }
+
         private IEnumerable<UniTask> LoadFromGroup(ScenarioGroup scenario_group)
         {
             IReadOnlyList<Scenario> scenarios = scenario_group.Scenarios;
