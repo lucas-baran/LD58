@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734eef7f303adce4c8b21b5668541a82, type: 3}
+  m_Name: SO_Scenario_GameManagers
+  m_EditorClassIdentifier: LucasBaran.Bootstrap::LucasBaran.Bootstrap.Scenario
+  _name: Game managers
+  _showInDebugGui: 0
+  _dependencies: []
+  _sceneReferences:
+  - _activeScene: 1
+    _priority: 0
+    _sceneAssetReference:
+      m_AssetGUID: 4e0dcee262d191f48bb1136ad01841ab
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
