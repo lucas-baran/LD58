@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
@@ -7,8 +6,6 @@ namespace LucasBaran.Bootstrap
     [InitializeOnLoad]
     internal static class BootstrapPlayMode
     {
-        private const string BOOTSTRAP_SCENE_NAME = "Scene_Bootstrap";
-
         static BootstrapPlayMode()
         {
             EditorApplication.playModeStateChanged -= EditorApplication_playModeStateChanged;
@@ -38,9 +35,8 @@ namespace LucasBaran.Bootstrap
                 return;
             }
 
-            string bootstrap_scene_path = AssetDatabase.FindAssets("t:SceneAsset " + BOOTSTRAP_SCENE_NAME).FirstOrDefault();
-            SceneAsset bootstrap_scene_asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(bootstrap_scene_path);
-            EditorSceneManager.playModeStartScene = bootstrap_scene_asset;
+            AssetUtils.TryGetBootstrapSceneAsset(out SceneAsset scene_asset);
+            EditorSceneManager.playModeStartScene = scene_asset;
         }
     }
 }
