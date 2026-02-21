@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 092c8f0d4f3ca1d4ab64e5c5a75e1e60, type: 3}
-  m_Name: SO_ScenarioGroup_MainMenu
+  m_Name: SO_ScenarioGroup_TitleScreen
   m_EditorClassIdentifier: LucasBaran.Bootstrap::LucasBaran.Bootstrap.ScenarioGroup
-  _name: Main menu
+  _name: Title screen
   _scenarios:
   - {fileID: 11400000, guid: 62dd9d9f5fca47447b3189ce79ac570f, type: 2}

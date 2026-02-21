@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: MainMenu
+  m_Name: TitleScreen
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: MainMenu
+  m_GroupName: TitleScreen
   m_GUID: 2013bfdca927466429465b975769f216
   m_SerializeEntries:
   - m_GUID: d20b1e9b7dafa6d4b9d08c09d447885f
-    m_Address: Scene_MainMenu
+    m_Address: Scene_TitleScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
