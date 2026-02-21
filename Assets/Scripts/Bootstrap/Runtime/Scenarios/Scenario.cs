@@ -12,7 +12,7 @@ namespace LucasBaran.Bootstrap
         [SerializeField] private ScenarioGroup[] _dependencies;
         [SerializeField] private SceneReference[] _sceneReferences;
 
-        public string Name => _name;
+        public string Name => string.IsNullOrEmpty(_name) ? name : _name;
         public bool ShowInDebugGui => _showInDebugGui;
         public IReadOnlyList<ScenarioGroup> Dependencies => _dependencies;
         public IReadOnlyList<SceneReference> SceneReferences => _sceneReferences;
