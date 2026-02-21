@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: SO_BootstrapSettings
   m_EditorClassIdentifier: LucasBaran.Bootstrap::LucasBaran.Bootstrap.BootstrapSettings
   _startScenario: {fileID: 11400000, guid: 62dd9d9f5fca47447b3189ce79ac570f, type: 2}
+  _startGroups:
+  - {fileID: 11400000, guid: 3e9f6f1b8c6e8fc4dbb132d68a7375a3, type: 2}
