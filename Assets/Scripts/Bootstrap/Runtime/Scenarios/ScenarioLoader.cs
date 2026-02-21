@@ -293,6 +293,30 @@ namespace LucasBaran.Bootstrap
             }
         }
 
+        public async UniTask UnloadAllAsync()
+        {
+            List<Scenario> scenarios_to_unload = null;
+
+            try
+            {
+                scenarios_to_unload = ListPool<Scenario>.Get();
+                scenarios_to_unload.AddRange(_loadedScenarios);
+
+                await UnloadAsync(scenarios_to_unload);
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception);
+            }
+            finally
+            {
+                if (scenarios_to_unload != null)
+                {
+                    ListPool<Scenario>.Release(scenarios_to_unload);
+                }
+            }
+        }
+
         public async UniTask UnloadAllAsync(Predicate<Scenario> predicate)
         {
             List<Scenario> scenarios_to_unload = null;
