@@ -11,6 +11,7 @@ namespace LucasBaran.Bootstrap.Toolbar
         private static IEnumerable<MainToolbarElement> GetToolbarElements()
         {
             yield return PlayButtonFactory.Create();
+            yield return OpenButtonFactory.Create();
         }
     }
 }
