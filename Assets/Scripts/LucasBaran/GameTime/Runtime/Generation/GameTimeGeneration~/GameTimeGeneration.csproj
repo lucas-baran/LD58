@@ -18,7 +18,7 @@
       <_FilesToCopy Include="$(OutputPath)**\$(AssemblyName).dll"></_FilesToCopy>
       <_FilesToCopy Include="$(OutputPath)**\$(AssemblyName).pdb"></_FilesToCopy>
     </ItemGroup>
-    <Copy SourceFiles="@(_FilesToCopy)" DestinationFolder="$(OuputPath)..\.."></Copy>
+    <Copy SourceFiles="@(_FilesToCopy)" DestinationFolder="$(OuputPath).."></Copy>
   </Target>
   
 </Project>

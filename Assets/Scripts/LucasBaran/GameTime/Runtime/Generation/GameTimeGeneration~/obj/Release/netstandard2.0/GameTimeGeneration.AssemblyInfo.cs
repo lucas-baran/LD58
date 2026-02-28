@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameTimeGeneration")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b35b4efe8dd5c27f9809f98a381109014fb0b4be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+201538861e77417d37f67112ef9052bf2c4fb26e")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameTimeGeneration")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameTimeGeneration")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

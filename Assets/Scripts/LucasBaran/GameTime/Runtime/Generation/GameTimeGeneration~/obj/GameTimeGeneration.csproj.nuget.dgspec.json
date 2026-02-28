@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\Project~\\GameTimeGeneration\\GameTimeGeneration.csproj": {}
+    "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\GameTimeGeneration~\\GameTimeGeneration.csproj": {}
   },
   "projects": {
-    "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\Project~\\GameTimeGeneration\\GameTimeGeneration.csproj": {
+    "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\GameTimeGeneration~\\GameTimeGeneration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\Project~\\GameTimeGeneration\\GameTimeGeneration.csproj",
+        "projectUniqueName": "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\GameTimeGeneration~\\GameTimeGeneration.csproj",
         "projectName": "GameTimeGeneration",
-        "projectPath": "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\Project~\\GameTimeGeneration\\GameTimeGeneration.csproj",
+        "projectPath": "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\GameTimeGeneration~\\GameTimeGeneration.csproj",
         "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-        "outputPath": "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\Project~\\GameTimeGeneration\\obj\\",
+        "outputPath": "D:\\UnityProjects\\LD58\\Assets\\Scripts\\LucasBaran\\GameTime\\Runtime\\Generation\\GameTimeGeneration~\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
