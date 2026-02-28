@@ -13,4 +13,12 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.1" />
   </ItemGroup>
 
+  <Target Name="CustomAfterBuild" AfterTargets="Build">
+    <ItemGroup>
+      <_FilesToCopy Include="$(OutputPath)**\$(AssemblyName).dll"></_FilesToCopy>
+      <_FilesToCopy Include="$(OutputPath)**\$(AssemblyName).pdb"></_FilesToCopy>
+    </ItemGroup>
+    <Copy SourceFiles="@(_FilesToCopy)" DestinationFolder="$(OuputPath)..\.."></Copy>
+  </Target>
+  
 </Project>
