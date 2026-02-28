@@ -2,7 +2,6 @@
     "name": "LucasBaran.GameTime",
     "rootNamespace": "LucasBaran.GameTime",
     "references": [
-        "GUID:504fad68a56fae24e9df8c79bd6c0482",
         "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
