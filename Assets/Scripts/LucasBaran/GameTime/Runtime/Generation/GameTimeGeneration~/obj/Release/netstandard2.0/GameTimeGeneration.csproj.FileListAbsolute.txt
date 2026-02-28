@@ -9,3 +9,14 @@ D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\Proj
 D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\Project~\GameTimeGeneration\obj\Release\netstandard2.0\GameTimeGeneration.sourcelink.json
 D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\Project~\GameTimeGeneration\obj\Release\netstandard2.0\GameTimeGeneration.dll
 D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\Project~\GameTimeGeneration\obj\Release\netstandard2.0\GameTimeGeneration.pdb
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\bin\Release\netstandard2.0\GameTimeGeneration.deps.json
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\bin\Release\netstandard2.0\GameTimeGeneration.dll
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\bin\Release\netstandard2.0\GameTimeGeneration.pdb
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.csproj.AssemblyReference.cache
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.GeneratedMSBuildEditorConfig.editorconfig
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.AssemblyInfoInputs.cache
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.AssemblyInfo.cs
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.csproj.CoreCompileInputs.cache
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.sourcelink.json
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.dll
+D:\UnityProjects\LD58\Assets\Scripts\LucasBaran\GameTime\Runtime\Generation\GameTimeGeneration~\obj\Release\netstandard2.0\GameTimeGeneration.pdb
