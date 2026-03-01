@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e681371ad919c4fb1fd22ad0e24d6e, type: 3}
   m_Name: SO_LevelData_3
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Levels.LevelData
-  _taxes:
-  - _fruitCost: {fileID: 11400000, guid: 6d39d7f741ea5ab4bb780080e4e6246a, type: 2}
-    _startsAtShot: 0
-    _shotCountBeforePaying: 10
   _growSpots:
   - _position: {x: -5.88416, y: 2.514679}
   - _position: {x: -9.453244, y: 0.58949876}
