@@ -1,4 +1,3 @@
-using LD58.Taxes;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +7,8 @@ namespace LD58.Levels
     [CreateAssetMenu(fileName = "SO_LevelData", menuName = "LD58/Levels/Level data")]
     public class LevelData : ScriptableObject
     {
-        [SerializeField] private List<LevelTax> _taxes = new();
         [SerializeField] private List<GrowSpot> _growSpots = new();
 
-        public IReadOnlyList<LevelTax> Taxes => _taxes;
         public IReadOnlyList<GrowSpot> GrowSpots => _growSpots;
 
         [Serializable]
