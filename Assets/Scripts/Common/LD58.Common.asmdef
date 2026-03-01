@@ -1,6 +1,6 @@
 {
     "name": "LD58.Common",
-    "rootNamespace": "LD58.Common",
+    "rootNamespace": "LD58",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
