@@ -129,15 +129,6 @@ namespace LD58.Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PayTax"",
-                    ""type"": ""Button"",
-                    ""id"": ""d5c7bcd2-7091-433d-a37c-8fb1cee78427"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -360,17 +351,6 @@ namespace LD58.Inputs
                     ""action"": ""SwitchFruit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cd61440e-8a9f-47ef-8ad5-afd0552f5326"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""PayTax"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -504,7 +484,6 @@ namespace LD58.Inputs
             m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
             m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
             m_Player_SwitchFruit = m_Player.FindAction("SwitchFruit", throwIfNotFound: true);
-            m_Player_PayTax = m_Player.FindAction("PayTax", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
@@ -596,7 +575,6 @@ namespace LD58.Inputs
         private readonly InputAction m_Player_Aim;
         private readonly InputAction m_Player_Shoot;
         private readonly InputAction m_Player_SwitchFruit;
-        private readonly InputAction m_Player_PayTax;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -624,10 +602,6 @@ namespace LD58.Inputs
             /// Provides access to the underlying input action "Player/SwitchFruit".
             /// </summary>
             public InputAction @SwitchFruit => m_Wrapper.m_Player_SwitchFruit;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/PayTax".
-            /// </summary>
-            public InputAction @PayTax => m_Wrapper.m_Player_PayTax;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -666,9 +640,6 @@ namespace LD58.Inputs
                 @SwitchFruit.started += instance.OnSwitchFruit;
                 @SwitchFruit.performed += instance.OnSwitchFruit;
                 @SwitchFruit.canceled += instance.OnSwitchFruit;
-                @PayTax.started += instance.OnPayTax;
-                @PayTax.performed += instance.OnPayTax;
-                @PayTax.canceled += instance.OnPayTax;
             }
 
             /// <summary>
@@ -692,9 +663,6 @@ namespace LD58.Inputs
                 @SwitchFruit.started -= instance.OnSwitchFruit;
                 @SwitchFruit.performed -= instance.OnSwitchFruit;
                 @SwitchFruit.canceled -= instance.OnSwitchFruit;
-                @PayTax.started -= instance.OnPayTax;
-                @PayTax.performed -= instance.OnPayTax;
-                @PayTax.canceled -= instance.OnPayTax;
             }
 
             /// <summary>
@@ -918,13 +886,6 @@ namespace LD58.Inputs
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSwitchFruit(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "PayTax" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnPayTax(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

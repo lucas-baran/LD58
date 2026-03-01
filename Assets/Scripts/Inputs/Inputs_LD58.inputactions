@@ -41,15 +41,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "PayTax",
-                    "type": "Button",
-                    "id": "d5c7bcd2-7091-433d-a37c-8fb1cee78427",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -272,17 +263,6 @@
                     "action": "SwitchFruit",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "cd61440e-8a9f-47ef-8ad5-afd0552f5326",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "PayTax",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
