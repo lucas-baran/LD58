@@ -1,9 +1,10 @@
+using LD58.Common;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace LD58.Fruits
 {
-    [CreateAssetMenu(fileName = "SO_FruitData", menuName = "LD58/Fruits/Fruit data")]
+    [CreateAssetMenu(fileName = "SO_FruitData", menuName = CreateAssetMenuItems.FRUITS + "Fruit data")]
     public class FruitData : ScriptableObject
     {
         [SerializeField] private string _name = string.Empty;

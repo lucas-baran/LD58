@@ -1,8 +1,9 @@
+using LD58.Common;
 using UnityEngine;
 
 namespace LD58.Cart
 {
-    [CreateAssetMenu(fileName = "SO_CartControlsData", menuName = "LD58/Cart/Controls Data")]
+    [CreateAssetMenu(fileName = "SO_CartControlsData", menuName = CreateAssetMenuItems.CART + "Controls Data")]
     public class CartControlsData : ScriptableObject
     {
         [SerializeField] private float _movementSpeed = 1f;

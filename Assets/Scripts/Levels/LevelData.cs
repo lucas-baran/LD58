@@ -1,10 +1,11 @@
+using LD58.Common;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace LD58.Levels
 {
-    [CreateAssetMenu(fileName = "SO_LevelData", menuName = "LD58/Levels/Level data")]
+    [CreateAssetMenu(fileName = "SO_LevelData", menuName = CreateAssetMenuItems.LEVELS + "Level data")]
     public class LevelData : ScriptableObject
     {
         [SerializeField] private List<GrowSpot> _growSpots = new();
