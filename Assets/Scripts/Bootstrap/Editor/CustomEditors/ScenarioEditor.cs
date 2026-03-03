@@ -51,7 +51,7 @@ namespace LucasBaran.Bootstrap
 
             scenario_group_serialized_object.Update();
 
-            int scenario_index = 0;
+            int scenario_index = scenarios_property.arraySize;
             scenarios_property.InsertArrayElementAtIndex(scenario_index);
             using SerializedProperty scenario_property = scenarios_property.GetArrayElementAtIndex(scenario_index);
             scenario_property.objectReferenceValue = _scenario;
