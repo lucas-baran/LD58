@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,11 +11,13 @@ namespace LucasBaran.Bootstrap
     public sealed class ScenarioEditor : Editor
     {
         private const string SCENARIOS_PROPERTY = "_scenarios";
+        private const int SCENARIO_FIELD_CONTROL_ID = -6003;
 
         private Scenario _scenario;
         private List<ScenarioGroup> _allScenarioGroups;
         private List<ScenarioGroup> _includedInScenarioGroups;
         private GUIContent _reorderableListHeader;
+        private Texture _pingButtonTexture;
         private ReorderableList _reorderableList;
         private ScenarioGroupAdvancedDropdown _scenarioGroupDropdown;
 
@@ -34,7 +35,44 @@ namespace LucasBaran.Bootstrap
         private void DrawScenarioGroupListElement(Rect element_rect, int index, bool is_active, bool is_focused)
         {
             ScenarioGroup scenario_group = _includedInScenarioGroups[index];
-            EditorGUI.LabelField(element_rect, $"- {scenario_group.Name}");
+            Event current_event = Event.current;
+            EventType eventType = current_event.type;
+            int control_id = GUIUtility.GetControlID(SCENARIO_FIELD_CONTROL_ID, FocusType.Keyboard, element_rect);
+            bool contains_mouse = element_rect.Contains(current_event.mousePosition);
+
+            switch (eventType)
+            {
+                case EventType.Repaint:
+                {
+                    GUIContent content = new(scenario_group.Name, AssetPreview.GetMiniThumbnail(scenario_group));
+                    EditorStyles.objectField.Draw(element_rect, content, control_id, on: false, hover: contains_mouse);
+
+                    break;
+                }
+                case EventType.MouseDown:
+                {
+                    if (!contains_mouse || Event.current.button != 0)
+                    {
+                        break;
+                    }
+
+                    if (Event.current.clickCount == 1)
+                    {
+                        EditorGUIUtility.PingObject(scenario_group);
+                        current_event.Use();
+                    }
+                    else if (Event.current.clickCount == 2 && scenario_group != null)
+                    {
+                        AssetDatabase.OpenAsset(scenario_group);
+                        current_event.Use();
+                        GUIUtility.ExitGUI();
+                    }
+
+                    break;
+                }
+                default:
+                    break;
+            }
         }
 
         private void AddToScenarioDropdownButton(Rect button_rect, ReorderableList list)
@@ -110,6 +148,7 @@ namespace LucasBaran.Bootstrap
             InitializeScenarioGroups();
 
             _reorderableListHeader = new GUIContent("Include in scenario groups");
+            _pingButtonTexture = EditorGUIUtility.IconContent("d_scenepicking_pickable_hover").image;
             _scenarioGroupDropdown = new ScenarioGroupAdvancedDropdown(_allScenarioGroups, OnScenarioGroupSelected);
             _reorderableList = new ReorderableList(_includedInScenarioGroups, typeof(ScenarioGroup))
             {
