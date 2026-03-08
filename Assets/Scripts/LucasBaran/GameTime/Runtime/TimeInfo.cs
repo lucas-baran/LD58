@@ -4,7 +4,7 @@ namespace LucasBaran.GameTime
 {
     public sealed class TimeInfo
     {
-        public float TimeScale { get; internal set; }
+        public float TimeScale { get; internal set; } = 1f;
         public float Time { get; internal set; }
         public float DeltaTime { get; internal set; }
         public float SmoothDeltaTime { get; internal set; }
