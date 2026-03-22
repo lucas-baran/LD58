@@ -159,6 +159,11 @@ namespace LD58.Fruits
 
         private void Update()
         {
+            if (_camera == null)
+            {
+                return;
+            }
+
             for (int fruit_index = _activeFruits.Count - 1; fruit_index >= 0; fruit_index--)
             {
                 Fruit fruit = _activeFruits[fruit_index];
