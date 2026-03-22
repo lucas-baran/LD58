@@ -7,6 +7,8 @@ namespace LucasBaran.Bootstrap
     {
         [SerializeField] private BootstrapSettings _settings;
 
+        public static BootstrapSettings RuntimeSettings { get; private set; }
+
         private async UniTaskVoid LoadStartScenario()
         {
             await ScenarioLoader.Instance.LoadFromGroupsAsync(_settings.StartGroups);
@@ -20,6 +22,11 @@ namespace LucasBaran.Bootstrap
 #endif
 
             await ScenarioLoader.Instance.LoadAsync(_settings.StartScenario);
+        }
+
+        private void Awake()
+        {
+            RuntimeSettings = _settings;
         }
 
         private void Start()
