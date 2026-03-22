@@ -28,6 +28,7 @@ namespace LucasBaran.Bootstrap.Toolbar
         private static async UniTaskVoid LoadScenarioAsync(Scenario scenario)
         {
             await ScenarioLoader.Instance.UnloadAllAsync();
+            await ScenarioLoader.Instance.LoadFromGroupsAsync(Bootstrap.RuntimeSettings.StartGroups);
             ScenarioLoader.Instance.LoadAsync(scenario).Forget();
         }
     }
