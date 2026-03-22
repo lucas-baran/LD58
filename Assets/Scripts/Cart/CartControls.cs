@@ -95,8 +95,11 @@ namespace LD58.Cart
 
         private void FixedUpdate()
         {
-            UpdatePosition();
-            UpdateAim();
+            if (_camera != null)
+            {
+                UpdatePosition();
+                UpdateAim();
+            }
         }
 
         private void Awake()
