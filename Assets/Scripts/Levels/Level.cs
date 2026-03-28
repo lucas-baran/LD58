@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using LD58.Cart;
+using LD58.Enemies;
 using LD58.Fruits;
 using System.Threading;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace LD58.Levels
     {
         [SerializeField] private LevelData _data;
         [SerializeField] private LevelIntro _intro;
+        [SerializeField] private EnemyUpdater _enemyUpdater;
+        [SerializeField] private EnemySpawner _enemySpawner;
 
         private CartControls _cartControls;
 
@@ -25,12 +28,16 @@ namespace LD58.Levels
 
             IsPlaying = true;
             _cartControls.SetEnabled(true);
+            _enemySpawner.SpawnEnemies();
         }
 
         private async UniTaskVoid PrepareNextShotAsync(CancellationToken cancellation_token)
         {
             _cartControls.Cannon.CanShoot = false;
+
             await WaitForMovingFruitsAsync(cancellation_token);
+            await _enemyUpdater.MoveEnemiesAsync(cancellation_token);
+            _enemySpawner.SpawnEnemies();
 
             FruitGrower.Instance.GrowFruits();
             _cartControls.Cannon.CanShoot = true;
