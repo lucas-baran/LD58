@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Levels_LevelEnemy
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Levels_LevelEnemy
+  m_GUID: 037ca1c0c6a882c45bd3b37d14da5405
+  m_SerializeEntries:
+  - m_GUID: 8287074920abe864aa1820e7895d752f
+    m_Address: Assets/_Project/GameAssets/Levels/LevelEnemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 23bf4d413914d774f8f2e73c1100940d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ecf8f20db777f354f8c53f0afbc4db98, type: 2}
+    - {fileID: 11400000, guid: bda3ae54a2f21d1498840545b7050daa, type: 2}

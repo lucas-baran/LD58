@@ -61,16 +61,35 @@ MonoBehaviour:
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
+  - {fileID: 11400000, guid: d5784ffe25d9ee947917586ce55b532e, type: 2}
+  - {fileID: 11400000, guid: 1db5a05066205b24fb9990a4606eeab5, type: 2}
   - {fileID: 11400000, guid: fa17e09b3d53cf94f828540742291332, type: 2}
+  - {fileID: 11400000, guid: f80b4f19b5b5e9a4ba0eb20706268e14, type: 2}
+  - {fileID: 11400000, guid: c054e792493f94c48a46a0868562299d, type: 2}
   - {fileID: 11400000, guid: a10314f502ccbf949a2dde6ad155cf8b, type: 2}
   - {fileID: 11400000, guid: e99360c35bd37a042afcd9c0adec8955, type: 2}
+  - {fileID: 11400000, guid: 1ffa741e01f74cd469a18be1cc1c21f8, type: 2}
   - {fileID: 11400000, guid: a5a35e86b953e98408c7b2a3ee17cd20, type: 2}
+  - {fileID: 11400000, guid: 85f086b5e61fc784aaf9c681bfcce573, type: 2}
+  - {fileID: 11400000, guid: fcd9b81738d3a6f448c1aee614df6aa1, type: 2}
+  - {fileID: 11400000, guid: 55c82ca2889069e4dbdcd445b1e6db72, type: 2}
   - {fileID: 11400000, guid: 73938590bcc13004cbbce2f60ddd31ee, type: 2}
+  - {fileID: 11400000, guid: db01463ca9194e94e81bfffac1d51b42, type: 2}
+  - {fileID: 11400000, guid: dc479de0406da2548b007055d4025cf8, type: 2}
+  - {fileID: 11400000, guid: 13aff4c358326944190ddfdd95d80826, type: 2}
+  - {fileID: 11400000, guid: 6105233d2581b7046974c20d418dde9b, type: 2}
+  - {fileID: 11400000, guid: 4499c0282522a2e43ad089c4bebaef05, type: 2}
+  - {fileID: 11400000, guid: 9e829d8d44ceb2f4eb512ec735d35def, type: 2}
   - {fileID: 11400000, guid: e9999cbf777ff5045a34790ac91551a1, type: 2}
   - {fileID: 11400000, guid: 4d048431ae18fbb4ba9dbc8c2fca5bd5, type: 2}
+  - {fileID: 11400000, guid: e3296c8ef28b37b4896fe6ec6a3c7885, type: 2}
+  - {fileID: 11400000, guid: 0e1de984b85f0ba4d97b87f941386a39, type: 2}
+  - {fileID: 11400000, guid: 205904ca6a6e20e4da6a25df5b7c52b6, type: 2}
   - {fileID: 11400000, guid: 5b88f1d9f5395994d8225809b86bd1d5, type: 2}
+  - {fileID: 11400000, guid: 2293c98a40eb13c4198537d494bdb2ae, type: 2}
   - {fileID: 11400000, guid: a43bd99d2fdccf341865449b3da7949c, type: 2}
   - {fileID: 11400000, guid: 11b8b97b9b16a494c80eb91094bfd821, type: 2}
+  - {fileID: 11400000, guid: 50a27974c51683943ae8adf726601499, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
     m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
