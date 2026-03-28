@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e681371ad919c4fb1fd22ad0e24d6e, type: 3}
+  m_Name: SO_LevelData_Enemy
+  m_EditorClassIdentifier: Assembly-CSharp::LD58.Levels.LevelData
+  _growSpots:
+  - _position: {x: 1.2003615, y: -0.4425462}
+  - _position: {x: 4.423136, y: -1.0344471}
+  - _position: {x: 5.1959796, y: 0.37620556}
+  - _position: {x: 3.2253084, y: 0.08756435}
+  - _position: {x: 6.938425, y: -0.051032066}
+  - _position: {x: 1.6353668, y: 1.4199982}
+  - _position: {x: 3.7080727, y: 1.3383954}
+  - _position: {x: -0.7637495, y: 0.6855749}
+  - _position: {x: -0.27413392, y: -0.63638717}
+  - _position: {x: 0.37868685, y: 0.5876516}
+  - _position: {x: -0.82903147, y: 1.6321647}
+  - _position: {x: -4.5827513, y: 0.7834979}
+  - _position: {x: -3.6361613, y: 0.11435652}
+  - _position: {x: -1.7593012, y: 0.5386901}
+  - _position: {x: -2.9017372, y: 1.4526395}
+  - _position: {x: -5.268213, y: 2.0401778}
+  - _position: {x: -5.969995, y: 0.84878004}
+  - _position: {x: -4.9907637, y: -0.39157915}
+  - _position: {x: -3.6524816, y: 2.1054597}
+  - _position: {x: -7.4388413, y: 1.256793}
+  - _position: {x: -7.194034, y: -0.04884851}
+  - _position: {x: -6.704418, y: 2.2523446}
+  - _position: {x: -8.254868, y: 2.268665}
+  - _position: {x: -9.266741, y: 0.7834978}
+  - _position: {x: -8.499676, y: -0.114130616}
+  - _position: {x: -6.6064944, y: -0.6037457}
+  - _position: {x: 0.5092513, y: 1.8443316}
+  - _position: {x: 2.5166748, y: 2.0075366}
+  - _position: {x: 4.6873035, y: 1.8769724}
+  - _position: {x: 2.2392259, y: -0.6853487}
+  - _position: {x: 6.7110476, y: 1.3220749}
+  - _position: {x: 6.2540736, y: -0.76695126}
+  - _position: {x: 8.767433, y: -0.32629722}
+  - _position: {x: 9.306011, y: 1.2731135}
+  - _position: {x: 10.073074, y: -0.5547846}
+  - _position: {x: 7.9840484, y: 0.44076705}
+  - _position: {x: 9.044882, y: 2.399229}
+  - _position: {x: 6.808972, y: 2.2197032}
+  - _position: {x: 7.706599, y: -1.011759}
+  - _position: {x: -1.8898652, y: 1.9096136}
+  - _position: {x: -2.6242888, y: -0.63638717}
