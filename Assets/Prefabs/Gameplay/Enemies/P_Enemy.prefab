@@ -85,7 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8abac0d198b6a49b73b1b37643f129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LD58.Enemies::LD58.Enemies.Enemy
-  _config: {fileID: 11400000, guid: c6dbac0bbd9b8f4419bfe57485da2bbf, type: 2}
   _health: {fileID: 7298779978629673999}
   _movement: {fileID: 7784344237798864886}
 --- !u!114 &7298779978629673999
@@ -100,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ce69db683bd1b42bb8dc813977a1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LD58.Enemies::LD58.Enemies.EnemyHealth
+  _config: {fileID: 11400000, guid: c6dbac0bbd9b8f4419bfe57485da2bbf, type: 2}
   _onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
