@@ -180,12 +180,11 @@ MonoBehaviour:
   _nextScenarioButton: {fileID: 8288485742911029199}
   _launchScenarioButton: {fileID: 2815832267311606397}
   _quitGameButton: {fileID: 1799903037846005857}
-  _defaultScenarioData: {fileID: 11400000, guid: 3c88c275971dfed4ea1e7fc0a8028800, type: 2}
   _scenarioDatas:
-  - {fileID: 11400000, guid: 3c88c275971dfed4ea1e7fc0a8028800, type: 2}
-  - {fileID: 11400000, guid: 34415c0d2ad5a64479565a834b04001a, type: 2}
-  - {fileID: 11400000, guid: afbe8538a5363c04d821b872ee62136d, type: 2}
-  - {fileID: 11400000, guid: c3011cead0fd21b428a2052e5b1a096c, type: 2}
+  - {fileID: 11400000, guid: 814f1643047bfe54fa23d28e9db5fd06, type: 2}
+  - {fileID: 11400000, guid: d57bebbab488da141bb8304db57981d9, type: 2}
+  - {fileID: 11400000, guid: 57353edd13d468b4cac0fc082545f9dd, type: 2}
+  - {fileID: 11400000, guid: d974d7bd6087fe44486e2233e96e6241, type: 2}
 --- !u!223 &1023969256946324381
 Canvas:
   m_ObjectHideFlags: 0
@@ -352,6 +351,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
