@@ -10,6 +10,7 @@ namespace LucasBaran.GameTime
         [GeneratedTime] internal static readonly TimeInfo MasterTime = new();
         [GeneratedTime] internal static readonly TimeInfo UITime = new();
         [GeneratedTime] internal static readonly TimeInfo GameplayTime = new();
+        [GeneratedTime] internal static readonly TimeInfo EnemyMovementTime = new() { TimeScale = 0f };
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void RegisterSubsystem()
@@ -29,6 +30,7 @@ namespace LucasBaran.GameTime
             MasterTime.Update();
             UITime.UpdateWithParent(MasterTime);
             GameplayTime.UpdateWithParent(MasterTime);
+            EnemyMovementTime.UpdateWithParent(GameplayTime);
         }
     }
 }
