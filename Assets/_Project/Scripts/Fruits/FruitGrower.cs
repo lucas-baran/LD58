@@ -1,7 +1,9 @@
+using Cysharp.Threading.Tasks;
 using LD58.Levels;
 using LD58.Players;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Unity.Collections;
 using UnityEngine;
 
@@ -96,17 +98,9 @@ namespace LD58.Fruits
             }
         }
 
-        public bool IsAnyFruitMoving()
+        public async UniTask WaitForMovingFruitsAsync(CancellationToken cancellation_token)
         {
-            foreach (Fruit fruit in _activeFruits)
-            {
-                if (fruit.IsMoving)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            await UniTask.WaitWhile(_activeFruits, static active_fruits => active_fruits.Exists(static fruit => fruit.IsMoving), cancellationToken: cancellation_token);
         }
 
         public void Initialize(LevelData level_data)

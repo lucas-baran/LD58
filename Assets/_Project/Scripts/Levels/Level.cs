@@ -35,17 +35,12 @@ namespace LD58.Levels
         {
             _cartControls.Cannon.CanShoot = false;
 
-            await WaitForMovingFruitsAsync(cancellation_token);
+            await FruitGrower.Instance.WaitForMovingFruitsAsync(cancellation_token);
             await _enemyUpdater.MoveEnemiesAsync(cancellation_token);
             _enemySpawner.SpawnEnemies();
 
             FruitGrower.Instance.GrowFruits();
             _cartControls.Cannon.CanShoot = true;
-        }
-
-        private async UniTask WaitForMovingFruitsAsync(CancellationToken cancellation_token)
-        {
-            await UniTask.WaitWhile(FruitGrower.Instance, fruit_grower => fruit_grower.IsAnyFruitMoving(), cancellationToken: cancellation_token);
         }
 
         private void CartCannon_OnShot()
