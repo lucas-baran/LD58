@@ -25,3 +25,11 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  _modules:
+  - _id: 0
+    _assetReference:
+      m_AssetGUID: 3c88c275971dfed4ea1e7fc0a8028800
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
