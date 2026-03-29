@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using LD58.Game;
 using LD58.Inputs;
+using LucasBaran.Bootstrap;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,13 +16,13 @@ namespace LD58.UI
         [SerializeField] private Button _nextScenarioButton;
         [SerializeField] private Button _launchScenarioButton;
         [SerializeField] private Button _quitGameButton;
-        [SerializeField] private List<LevelDescription> _scenarioDatas;
+        [SerializeField] private List<Scenario> _scenarioDatas;
 
         private int _currentScenarioIndex = 0;
 
         private void RefreshScenario()
         {
-            _scenarioPanel.SetScenarioData(_scenarioDatas[_currentScenarioIndex]);
+            _scenarioPanel.SetScenario(_scenarioDatas[_currentScenarioIndex]);
         }
 
         private void PreviousScenarioButton_OnClick()
@@ -50,7 +51,7 @@ namespace LD58.UI
 
         private void LaunchScenarioButton_OnClick()
         {
-            GameManager.Instance.LoadLevelAsync(_scenarioDatas[_currentScenarioIndex].Scenario).Forget();
+            GameManager.Instance.LoadLevelAsync(_scenarioDatas[_currentScenarioIndex]).Forget();
         }
 
         private void QuitGameButton_OnClick()
