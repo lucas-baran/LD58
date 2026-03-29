@@ -43,6 +43,8 @@ namespace LucasBaran.GameTime.Generation
                             {
                                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
                                 get => {{property_path}}.TimeScale;
+                                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                set => {{property_path}}.TimeScale = value;
                             }
 
                             public static float Time
