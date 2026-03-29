@@ -33,7 +33,9 @@ namespace LucasBaran.GameTime.Generation
                 string property_path = $"{model.ClassName}.{model.PropertyName}";
 
                 SourceText source_text = SourceText.From($$"""
+                    using Cysharp.Threading.Tasks;
                     using System.Runtime.CompilerServices;
+                    using System.Threading;
 
                     namespace {{model.Namespace}}
                     {
@@ -63,6 +65,17 @@ namespace LucasBaran.GameTime.Generation
                             {
                                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
                                 get => {{property_path}}.SmoothDeltaTime;
+                            }
+
+                            public static async UniTask WaitAsync(float duration, CancellationToken cancellation_token)
+                            {
+                                float elapsed_time = 0f;
+
+                                while (elapsed_time < duration)
+                                {
+                                    await UniTask.NextFrame(cancellation_token);
+                                    elapsed_time += {{property_path}}.DeltaTime;
+                                }
                             }
                         }
                     }
