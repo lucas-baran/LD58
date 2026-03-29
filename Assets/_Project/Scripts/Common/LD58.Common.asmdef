@@ -1,7 +1,9 @@
 {
     "name": "LD58.Common",
     "rootNamespace": "LD58",
-    "references": [],
+    "references": [
+        "GUID:30093f8319b176f45b78e885ee70bcd4"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
