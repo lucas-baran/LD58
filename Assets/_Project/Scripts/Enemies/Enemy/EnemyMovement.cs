@@ -1,3 +1,4 @@
+using LucasBaran.GameTime;
 using UnityEngine;
 
 namespace LD58.Enemies
@@ -6,10 +7,10 @@ namespace LD58.Enemies
     {
         [SerializeField] private EnemyMovementConfig _config;
 
-        internal void Tick(float delta_time)
+        private void Update()
         {
             Vector3 direction = Vector3.left;
-            transform.position += delta_time * _config.Speed * direction;
+            transform.position += EnemyMovementTime.DeltaTime * _config.Speed * direction;
         }
     }
 }

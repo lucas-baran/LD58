@@ -26,20 +26,14 @@ namespace LD58.Enemies
 
         public async UniTask MoveEnemiesAsync(CancellationToken cancellation_token)
         {
-            float elapsed_time = 0f;
-
-            while (elapsed_time < _movementDuration)
+            try
             {
-                await UniTask.NextFrame(cancellation_token);
-
-                float delta_time = GameplayTime.DeltaTime;
-                elapsed_time += delta_time;
-                float movement_delta_time = delta_time / _movementDuration;
-
-                foreach (Enemy enemy in _activeEnemies)
-                {
-                    enemy.Movement.Tick(movement_delta_time);
-                }
+                EnemyMovementTime.TimeScale = 1f / _movementDuration;
+                await GameplayTime.WaitAsync(_movementDuration, cancellation_token);
+            }
+            finally
+            {
+                EnemyMovementTime.TimeScale = 0f;
             }
         }
 
