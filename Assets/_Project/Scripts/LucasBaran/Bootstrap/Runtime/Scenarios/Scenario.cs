@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -33,6 +35,16 @@ namespace LucasBaran.Bootstrap
             }
 
             return found_module;
+        }
+
+        public async UniTask<T> LoadModuleAsync<T>(int id, CancellationToken cancellation_token)
+        {
+            if (!TryGetModule(id, out AssetReference module_reference))
+            {
+                return default;
+            }
+
+            return await module_reference.LoadAssetAsync<T>().ToUniTask(cancellationToken: cancellation_token);
         }
 
         [Serializable]
