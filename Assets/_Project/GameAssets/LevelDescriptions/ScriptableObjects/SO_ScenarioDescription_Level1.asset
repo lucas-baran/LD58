@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Game.ScenarioData
   _name: The basics
   _picture: {fileID: 21300000, guid: fc78e1e7f9c87b045b9a894e9a565b27, type: 3}
-  _scenario: {fileID: 11400000, guid: 814f1643047bfe54fa23d28e9db5fd06, type: 2}

@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Game.ScenarioData
   _name: Yellow fruits collect
   _picture: {fileID: 21300000, guid: 5a579a82f206f2e4fae00ac57d98fd14, type: 3}
-  _scenario: {fileID: 11400000, guid: d57bebbab488da141bb8304db57981d9, type: 2}

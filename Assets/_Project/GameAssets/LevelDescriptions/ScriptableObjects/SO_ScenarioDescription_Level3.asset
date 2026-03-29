@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Game.ScenarioData
   _name: Can your cart handle it? (Mine can)
   _picture: {fileID: 21300000, guid: 2465d029ab520504ea6d2397ae9b42e9, type: 3}
-  _scenario: {fileID: 11400000, guid: 57353edd13d468b4cac0fc082545f9dd, type: 2}

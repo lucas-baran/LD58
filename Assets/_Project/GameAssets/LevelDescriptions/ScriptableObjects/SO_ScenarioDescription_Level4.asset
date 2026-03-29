@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LD58.Game.ScenarioData
   _name: Are these... branches?
   _picture: {fileID: 21300000, guid: c7dc10ef609155946b51a988e3ad0335, type: 3}
-  _scenario: {fileID: 11400000, guid: d974d7bd6087fe44486e2233e96e6241, type: 2}
