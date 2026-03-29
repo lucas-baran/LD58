@@ -36,11 +36,11 @@ namespace LucasBaran.Bootstrap
         {
             ScenarioGroup scenario_group = _includedInScenarioGroups[index];
             Event current_event = Event.current;
-            EventType eventType = current_event.type;
+            EventType event_type = current_event.type;
             int control_id = GUIUtility.GetControlID(SCENARIO_FIELD_CONTROL_ID, FocusType.Keyboard, element_rect);
             bool contains_mouse = element_rect.Contains(current_event.mousePosition);
 
-            switch (eventType)
+            switch (event_type)
             {
                 case EventType.Repaint:
                 {
